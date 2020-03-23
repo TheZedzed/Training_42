@@ -1,0 +1,5 @@
+Credentials cache: API:CF5D9955-8CC3-4BC2-A4F8-A92C5F20F2F7
+        Principal: azeraoul@42.FR
+
+  Issued                Expires             Flags    Principal
+Mar  9 12:50:32 2020  Mar 16 12:50:24 2020  FPIA   krbtgt/42.FR@42.FR
