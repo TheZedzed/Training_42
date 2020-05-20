@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_rev_params.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azeraoul <azeraoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/11 16:45:47 by azeraoul          #+#    #+#             */
-/*   Updated: 2020/04/18 19:30:56 by alex             ###   ########.fr       */
+/*   Created: 2020/05/07 22:27:47 by alex              #+#    #+#             */
+/*   Updated: 2020/05/07 22:37:44 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,28 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_putnbr(int nb)
+void	ft_putstr(char *str)
 {
-	int	sign;
+	int	index;
 
-	sign = 1;
-	if (nb < 0)
+	index = 0;
+	while (str[index])
 	{
-		ft_putchar('-');
-		sign = -1;
+		ft_putchar(str[index]);
+		index++;
 	}
-	if (nb >= 10 || nb <= -10)
-		ft_putnbr((nb / 10) * sign);
-	ft_putchar((nb % 10) * sign + '0');
+}
+
+int	main(int argc, char **argv)
+{
+	int	index;
+
+	index = argc - 1;
+	while (index > 0)
+	{
+		ft_putstr(argv[index]);
+		ft_putchar('\n');
+		index--;
+	}
+	return (0);
 }

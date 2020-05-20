@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strupcase.c                                     :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azeraoul <azeraoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 19:35:14 by azeraoul          #+#    #+#             */
-/*   Updated: 2020/03/26 13:30:58 by alex             ###   ########.fr       */
+/*   Created: 2020/03/27 03:07:20 by alex              #+#    #+#             */
+/*   Updated: 2020/04/16 21:07:34 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strupcase(char *str)
+unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
+	unsigned int	len;
 	unsigned int	i;
 
 	i = 0;
-	while (*str)
+	len = 0;
+	while (src[len])
+		len++;
+	while (src[i] && i < size - 1)
 	{
-		if (str[i] >= 97 && str[i] <= 122)
-			str[i++] -= 32;
+		dest[i] = src[i];
 		i++;
 	}
-	return (str);
+	dest[i] = '\0';
+	return (len);
 }

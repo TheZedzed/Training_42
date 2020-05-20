@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strupcase.c                                     :+:      :+:    :+:   */
+/*   ft_iterative_power.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azeraoul <azeraoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 19:35:14 by azeraoul          #+#    #+#             */
-/*   Updated: 2020/03/26 13:30:58 by alex             ###   ########.fr       */
+/*   Created: 2020/05/07 17:49:39 by alex              #+#    #+#             */
+/*   Updated: 2020/05/07 17:59:03 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strupcase(char *str)
+int	ft_iterative_power(int nb, int power)
 {
-	unsigned int	i;
+	int	res;
 
-	i = 0;
-	while (*str)
+	res = 1;
+	if (power < 0)
+		return (0);
+	while (power)
 	{
-		if (str[i] >= 97 && str[i] <= 122)
-			str[i++] -= 32;
-		i++;
+		if (power == 0)
+			nb = 1;
+		res = res * nb;
+		power--;
 	}
-	return (str);
+	return (res);
 }

@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azeraoul <azeraoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/11 16:45:47 by azeraoul          #+#    #+#             */
-/*   Updated: 2020/04/18 19:30:56 by alex             ###   ########.fr       */
+/*   Created: 2020/04/27 18:43:54 by alex              #+#    #+#             */
+/*   Updated: 2020/04/27 19:15:07 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdio.h>
 
-void	ft_putchar(char c)
+int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {
-	write(1, &c, 1);
-}
-
-void	ft_putnbr(int nb)
-{
-	int	sign;
-
-	sign = 1;
-	if (nb < 0)
+	while (*s1 && *s1 == *s2 && --n)
 	{
-		ft_putchar('-');
-		sign = -1;
+		s1++;
+		s2++;
 	}
-	if (nb >= 10 || nb <= -10)
-		ft_putnbr((nb / 10) * sign);
-	ft_putchar((nb % 10) * sign + '0');
+	return (*s1 - *s2);
 }

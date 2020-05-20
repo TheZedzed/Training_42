@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strupcase.c                                     :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azeraoul <azeraoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 19:35:14 by azeraoul          #+#    #+#             */
-/*   Updated: 2020/03/26 13:30:58 by alex             ###   ########.fr       */
+/*   Created: 2020/04/27 18:18:57 by alex              #+#    #+#             */
+/*   Updated: 2020/04/27 18:43:03 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strupcase(char *str)
+int	ft_strcmp(char *s1, char *s2)
 {
-	unsigned int	i;
-
-	i = 0;
-	while (*str)
+	while (*s1 && *s1 == *s2)
 	{
-		if (str[i] >= 97 && str[i] <= 122)
-			str[i++] -= 32;
-		i++;
+		s1++;
+		s2++;
 	}
-	return (str);
+	return (*s1 - *s2);
 }

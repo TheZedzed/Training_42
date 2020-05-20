@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strupcase.c                                     :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azeraoul <azeraoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 19:35:14 by azeraoul          #+#    #+#             */
-/*   Updated: 2020/03/26 13:30:58 by alex             ###   ########.fr       */
+/*   Created: 2020/05/07 23:28:03 by alex              #+#    #+#             */
+/*   Updated: 2020/05/07 23:46:46 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strupcase(char *str)
+#include <stdlib.h>
+
+int	*ft_range(int min, int max)
 {
-	unsigned int	i;
+	int	i;
+	int	*tab;
 
 	i = 0;
-	while (*str)
+	if (min >= max)
+		return (NULL);
+	tab = (int *)malloc(sizeof(int) * (max - min));
+	if (tab == NULL)
+		return (NULL);
+	while (min < max)
 	{
-		if (str[i] >= 97 && str[i] <= 122)
-			str[i++] -= 32;
+		tab[i] = min++;
 		i++;
 	}
-	return (str);
+	return (tab);
 }

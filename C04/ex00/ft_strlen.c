@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strupcase.c                                     :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azeraoul <azeraoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 19:35:14 by azeraoul          #+#    #+#             */
-/*   Updated: 2020/03/26 13:30:58 by alex             ###   ########.fr       */
+/*   Created: 2020/04/28 19:05:09 by alex              #+#    #+#             */
+/*   Updated: 2020/04/28 19:07:02 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strupcase(char *str)
+int	ft_strlen(char *str)
 {
-	unsigned int	i;
+	int	len;
 
-	i = 0;
-	while (*str)
-	{
-		if (str[i] >= 97 && str[i] <= 122)
-			str[i++] -= 32;
-		i++;
-	}
-	return (str);
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }

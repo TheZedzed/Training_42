@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strupcase.c                                     :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azeraoul <azeraoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 19:35:14 by azeraoul          #+#    #+#             */
-/*   Updated: 2020/03/26 13:30:58 by alex             ###   ########.fr       */
+/*   Created: 2020/04/27 22:45:40 by alex              #+#    #+#             */
+/*   Updated: 2020/04/27 23:00:59 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strupcase(char *str)
+char	*ft_strstr(char *str, char *to_find)
 {
 	unsigned int	i;
+	unsigned int	j;
 
 	i = 0;
-	while (*str)
+	j = 0;
+	while (str[i] && *to_find)
 	{
-		if (str[i] >= 97 && str[i] <= 122)
-			str[i++] -= 32;
+		if (str[i] == to_find[j])
+		{
+			while (str[i + j] == to_find[j])
+				j++;
+			if (to_find[j] == '\0')
+				return (&str[i]);
+		}
 		i++;
 	}
-	return (str);
+	return (0);
 }

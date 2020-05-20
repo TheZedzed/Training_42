@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azeraoul <azeraoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/11 16:45:47 by azeraoul          #+#    #+#             */
-/*   Updated: 2020/04/18 19:30:56 by alex             ###   ########.fr       */
+/*   Created: 2020/05/07 20:02:18 by alex              #+#    #+#             */
+/*   Updated: 2020/05/07 20:10:09 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putchar(char c)
+int	ft_is_prime(int nb)
 {
-	write(1, &c, 1);
+	int	i;
+
+	i = 2;
+	while (nb % i != 0 && i <= nb)
+		i++;
+	if (nb == i)
+		return (1);
+	return (0);
 }
 
-void	ft_putnbr(int nb)
+int	ft_find_next_prime(int nb)
 {
-	int	sign;
-
-	sign = 1;
-	if (nb < 0)
+	while (1)
 	{
-		ft_putchar('-');
-		sign = -1;
+		if (ft_is_prime(nb))
+			return (nb);
+		nb++;
 	}
-	if (nb >= 10 || nb <= -10)
-		ft_putnbr((nb / 10) * sign);
-	ft_putchar((nb % 10) * sign + '0');
 }

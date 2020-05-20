@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strupcase.c                                     :+:      :+:    :+:   */
+/*   ft_recursive_power.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azeraoul <azeraoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 19:35:14 by azeraoul          #+#    #+#             */
-/*   Updated: 2020/03/26 13:30:58 by alex             ###   ########.fr       */
+/*   Created: 2020/05/07 18:04:02 by alex              #+#    #+#             */
+/*   Updated: 2020/05/07 18:13:10 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strupcase(char *str)
+int	ft_recursive_power(int nb, int power)
 {
-	unsigned int	i;
-
-	i = 0;
-	while (*str)
-	{
-		if (str[i] >= 97 && str[i] <= 122)
-			str[i++] -= 32;
-		i++;
-	}
-	return (str);
+	if (power == 0)
+		return (1);
+	if (power > 0)
+		return (nb * ft_recursive_power(nb, power - 1));
+	else
+		return (0);
 }

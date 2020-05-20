@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azeraoul <azeraoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/11 16:45:47 by azeraoul          #+#    #+#             */
-/*   Updated: 2020/04/18 19:30:56 by alex             ###   ########.fr       */
+/*   Created: 2020/05/07 16:39:37 by alex              #+#    #+#             */
+/*   Updated: 2020/05/07 17:27:53 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putchar(char c)
+int	ft_iterative_factorial(int nb)
 {
-	write(1, &c, 1);
-}
+	int	res;
 
-void	ft_putnbr(int nb)
-{
-	int	sign;
-
-	sign = 1;
+	res = 1;
 	if (nb < 0)
+		return (0);
+	while (nb)
 	{
-		ft_putchar('-');
-		sign = -1;
+		if (nb <= 1)
+			nb = 1;
+		else
+			res = res * nb;
+		nb--;
 	}
-	if (nb >= 10 || nb <= -10)
-		ft_putnbr((nb / 10) * sign);
-	ft_putchar((nb % 10) * sign + '0');
+	return (res);
 }
