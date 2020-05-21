@@ -6,12 +6,11 @@
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 03:32:32 by alex              #+#    #+#             */
-/*   Updated: 2020/05/21 04:23:12 by alex             ###   ########.fr       */
+/*   Updated: 2020/05/21 18:24:22 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include "ft_strs_to_tab.h"
 
 int	ft_strlen(char *str)
@@ -69,19 +68,4 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 	(tab + i)->str = NULL;
 	(tab + i)->copy = NULL;
 	return (tab);
-}
-
-int	main(int argc, char **argv)
-{
-	int	i;
-	struct s_stock_str	*tab;
-
-	tab = ft_strs_to_tab(argc, argv);
-	i = 0;
-	while (i < argc)
-	{
-		printf("%d %s %s\n", tab[i].size, tab[i].str, tab[i].copy);
-		i++;
-	}
-	return (0);
 }
