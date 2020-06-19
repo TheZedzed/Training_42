@@ -11,13 +11,7 @@
 /* ************************************************************************** */
 
 #include <fcntl.h>
-#include <unistd.h>
-
-void	ft_putstr(char *str)
-{
-	while(*str)
-		write(1, str++, 1);
-}
+#include "ft_lib.h"
 
 void	ft_display_file(const char *filename)
 {

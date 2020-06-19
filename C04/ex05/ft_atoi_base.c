@@ -54,12 +54,13 @@ int	is_inbase(char c, char *base)
 	int	index;
 
 	index = 0;
-	while (base[index] && c != base[index])
+	while (base[index])
+	{
+		if (c == base[index])
+			return (index);
 		index++;
-	if (base[index] == '\0')
-		return (-1);
-	else
-		return (index);
+	}
+	return (-1);
 }
 
 int	ft_atoi_base(char *str, char *base)

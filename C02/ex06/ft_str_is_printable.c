@@ -12,16 +12,13 @@
 
 int	ft_str_is_printable(char *str)
 {
-	unsigned int	i;
-
-	i = 0;
 	if (!(*str))
-		return (1);
-	while (*(str + i))
+		return (0);
+	while (*str)
 	{
-		if (*(str + i) < 32 || *(str + i) > 126)
+		if (*str < 32 || *str > 126)
 			return (0);
-		i++;
+		str++;
 	}
 	return (1);
 }

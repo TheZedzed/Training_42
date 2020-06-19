@@ -19,8 +19,6 @@ int	ft_iterative_power(int nb, int power)
 		return (0);
 	while (power)
 	{
-		if (power == 0)
-			nb = 1;
 		res = res * nb;
 		power--;
 	}

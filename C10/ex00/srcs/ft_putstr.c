@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azeraoul <azeraoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 13:01:08 by azeraoul          #+#    #+#             */
-/*   Updated: 2020/03/12 17:52:11 by azeraoul         ###   ########.fr       */
+/*   Created: 2020/06/16 20:13:47 by alex              #+#    #+#             */
+/*   Updated: 2020/06/16 20:15:48 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
-{
-	unsigned int	i;
+#include "ft_lib.h"
 
-	i = 0;
-	while (*(src + i) && i < n)
-	{
-		*(dest + i) = *(src + i);
-		i++;
-	}
-	while (i < n)
-		*(dest + i) = '\0';
-	return (dest);
+void	ft_putstr(char *str)
+{
+	while (*str)
+		write(1, str++, 1);
 }
