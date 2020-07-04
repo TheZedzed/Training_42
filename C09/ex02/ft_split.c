@@ -6,107 +6,98 @@
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 02:22:23 by alex              #+#    #+#             */
-/*   Updated: 2020/05/28 13:15:50 by alex             ###   ########.fr       */
+/*   Updated: 2020/07/01 19:49:31 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 
-int	is_separator(char c, char *charset)
+char	*ft_strchr(const char *str, int c)
 {
-	int	i;
-
-	i = 0;
-	while (charset[i] && c != charset[i])
-		i++;
-	if (charset[i] == '\0')
-		return (0);
-	return (1);
+	while (*str && *str != (unsigned char)c)
+		str++;
+	if (*str == (unsigned char)c)
+		return ((char *)str);
+	else
+		return (NULL);
 }
 
-int	ft_word_len(int *index, char *str, char *charset)
+char	*ft_strncpy(char *dest, const char *src, int n)
 {
-	int	begin;
-	int	end;
-
-	while (str[*index] && is_separator(str[*index], charset))
-		(*index)++;
-	begin = *index;
-	end = begin;
-	while (str[end] && !is_separator(str[end], charset))
-		end++;
-	return (end - begin);
+	while (*src && n--)
+		*dest++ = *src++;
+	if (n > 0)
+	{
+		while (n--)
+			*dest++ = 0;
+	}
+	return (dest);
 }
 
-int	ft_nb_words(char *str, char *charset)
+int	ft_nb_split(const char *str, const char *charset)
 {
-	int	i;
 	int	words;
 
-	i = 0;
 	words = 0;
-	while (str[i])
+	while (*str)
 	{
-		while (str[i] && is_separator(str[i], charset))
-			i++;
-		while (str[i] && !is_separator(str[i], charset))
-			i++;
-		words++;
+		while (*str && ft_strchr(charset, *str))
+			str++;
+		while (*str && !ft_strchr(charset, *str))
+			str++;
+		if (*str)
+			words++;
 	}
 	return (words);
 }
 
-char	*ft_new_strncpy(int *index, char *dest, char *src, int n)
+void	ft_print_split(char **tab, const char *str, const char *charset)
 {
-	int	i;
+	int	size;
+	int	index;
 
-	i = 0;
-	while (src[*index] && *index < n)
+	index = 0;
+	while (*str)
 	{
-		dest[i] = src[*index];
-		i++;
-		(*index)++;
+		if (!ft_strchr(charset, *str))
+		{
+			size = 1;
+			while (str[size] && !ft_strchr(charset, str[size]))
+				size++;
+			tab[index] = (char *)malloc((size + 1) * sizeof(char));
+			ft_strncpy(tab[index], str, size);
+			tab[index++][size] = 0;
+			str += size;
+		}
+		else
+			str++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	tab[index] = 0;
 }
 
-char	**ft_split(char *str, char *charset)
+char	**ft_split(const char *str, const char *charset)
 {
-	int	i;
-	int	nb_words;
-	int	word_len;
-	int	index;
+	int	size;
 	char	**tab;
 
-	i = 0;
-	index = 0;
-	nb_words = ft_nb_words(str, charset);
-	tab = (char **)malloc(sizeof(char *) * nb_words + 1);
-	if (tab == NULL)
+	size = ft_nb_split(str, charset);
+	if (!(tab = (char **)malloc((size + 1) * sizeof(char *))))
 		return (NULL);
-	while (i < nb_words)
-	{
-		word_len = ft_word_len(&index, str, charset);
-		tab[i] = (char *)malloc(sizeof(char) * word_len + 1);
-		ft_new_strncpy(&index, tab[i], str, (index + word_len));
-		i++;
-	}
-	tab[i] = 0;
+	ft_print_split(tab, str, charset);
 	return (tab);
 }
 
 int	main(int argc, char **argv)
 {
-	int	i;
+	int	i = 0;
 	char	**word;
 
 	if (argc == 3)
 	{
 		word = ft_split(argv[1], argv[2]);
-		for (i = 0; i < 5; i++)
-			printf("%s ", word[i]);
+		while (word[i])
+			printf("%s\n", word[i++]);
 	}
 	return (0);
 }

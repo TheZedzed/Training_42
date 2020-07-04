@@ -5,25 +5,31 @@
 #                                                     +:+ +:+         +:+      #
 #    By: alex <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/05/27 21:23:30 by alex              #+#    #+#              #
-#    Updated: 2020/05/28 15:31:14 by alex             ###   ########.fr        #
+#    Created: 2020/06/02 20:24:22 by alex              #+#    #+#              #
+#    Updated: 2020/07/01 20:35:39 by alex             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_cat
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-SRC = ft_cat.c
-OBJ = $(SRC:.c=.o)
-RM = rm -f
+NAME		:= ft_cat
+
+DEP_DIR		:= includes/
+SRCS_DIR	:= srcs/
+
+SRC		:= srcs/ft_cat.c srcs/ft_putstr.c
+OBJ		:= $(SRC:.c=.o)
+
+CC		:= gcc
+CFLAGS		+= -Wall -Wextra -Werror
+CPPFLAGS	:= -I$(DEP_DIR)
+RM		:= rm -f
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) -o $@ $^
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(SRCS_DIR)%.o: $(SRCS_DIR)%.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ)
@@ -32,3 +38,5 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+.Phony: re

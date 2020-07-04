@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_display.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/16 20:13:47 by alex              #+#    #+#             */
-/*   Updated: 2020/07/01 20:14:17 by alex             ###   ########.fr       */
+/*   Created: 2020/07/01 20:10:18 by alex              #+#    #+#             */
+/*   Updated: 2020/07/01 20:11:45 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_display.h" 
+#ifndef FT_DISPLAY_H
+#define FT_DISPLAY_H
 
-void	ft_putstr(char *str)
-{
-	while (*str)
-		write(1, str++, 1);
-}
+#include <unistd.h>
+#include <fcntl.h>
+
+void	ft_putstr(char *str);
+
+#endif
