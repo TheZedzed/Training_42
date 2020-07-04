@@ -6,17 +6,16 @@
 #    By: alex <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/02 20:24:22 by alex              #+#    #+#              #
-#    Updated: 2020/07/04 18:26:23 by alex             ###   ########.fr        #
+#    Updated: 2020/07/04 18:10:25 by alex             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= ft_cat
+NAME		:= ft_tail
 
 DEP_DIR		:= includes/
 SRCS_DIR	:= srcs/
 
-SRC		:= srcs/ft_cat_stdin.c srcs/ft_cat_stdout.c srcs/ft_strcmp.c \
-			srcs/ft_putstr.c srcs/main.c
+SRC		:= srcs/ft_tail.c
 OBJ		:= $(SRC:.c=.o)
 
 CC		:= gcc

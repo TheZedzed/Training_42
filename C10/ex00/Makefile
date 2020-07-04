@@ -6,7 +6,7 @@
 #    By: alex <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/02 20:24:22 by alex              #+#    #+#              #
-#    Updated: 2020/07/01 20:34:33 by alex             ###   ########.fr        #
+#    Updated: 2020/07/04 18:50:21 by alex             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		:= ft_display_file
 DEP_DIR		:= includes/
 SRCS_DIR	:= srcs/
 
-SRC		:= srcs/ft_display_file.c srcs/ft_putstr.c
+SRC		:= srcs/main.c srcs/ft_display_file.c srcs/ft_putstr.c
 OBJ		:= $(SRC:.c=.o)
 
 CC		:= gcc

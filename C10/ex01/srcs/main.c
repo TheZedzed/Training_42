@@ -1,32 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_display_file.c                                  :+:      :+:    :+:   */
+/*   ft_cat.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 02:29:49 by alex              #+#    #+#             */
-/*   Updated: 2020/07/01 20:10:06 by alex             ###   ########.fr       */
+/*   Updated: 2020/07/04 18:05:45 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_display.h"
+#include "ft_cat.h"
 
-void	ft_display_file(const char *filename)
+int	main(int argc, char **argv)
 {
-	char	buffer[4096];
+	int	i;
 	int	file;
-	int	bytes;
 
-	file = open(filename, O_RDONLY);
-	if (file == -1)
-		ft_putstr("Cannot read file.\n");
-	else
+	i = 0;
+	if (argc == 1)
+		ft_cat_stdin();
+	while (++i < argc)
 	{
-		while ((bytes = read(file, &buffer, 4095)))
+		if (!ft_strcmp(argv[i], "-"))
+			ft_cat_stdin();
+		else
 		{
-			write(1, &buffer, bytes);
+			file = open(argv[i], O_RDONLY);
+			if (file == -1)
+			{
+				ft_putstr(basename(argv[0]));
+				ft_putstr(": ");
+				ft_putstr(argv[i]);
+				ft_putstr(": ");
+				ft_putstr(strerror(errno));
+				ft_putstr("\n");
+			}
+			else
+				ft_cat_stdout(file);
 		}
-		close(file);
 	}
+	return (0);
 }

@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cat.h                                           :+:      :+:    :+:   */
+/*   ft_cat_stdout.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/01 22:18:06 by alex              #+#    #+#             */
-/*   Updated: 2020/07/04 18:27:08 by alex             ###   ########.fr       */
+/*   Created: 2020/07/04 18:20:14 by alex              #+#    #+#             */
+/*   Updated: 2020/07/04 18:20:35 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CAT_H
-#define FT_CAT_H
+#include "ft_cat.h"
 
-#include <string.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <libgen.h>
-#include <errno.h>
+void	ft_cat_stdout(int file)
+{
+	char	buffer[29696];
+	int	bytes;
 
-void	ft_putstr(char *str);
-void	ft_cat_stdin(void);
-void	ft_cat_stdout(int file);
-int	ft_strcmp(const char *s1, const char *s2);
-
-#endif
+	while ((bytes = read(file, &buffer, 29695)))
+	{
+		write(1, &buffer, bytes);
+	}
+	close(file);
+}
