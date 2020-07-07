@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/04 18:38:27 by alex              #+#    #+#             */
-/*   Updated: 2020/07/05 16:50:38 by alex             ###   ########.fr       */
+/*   Created: 2020/06/20 12:38:49 by alex              #+#    #+#             */
+/*   Updated: 2020/07/05 19:24:54 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_tail.h"
 
-int	main(int argc, char **argv)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-/*	int	file;
-	int	i;
+	const unsigned char	*psrc;
+	unsigned char		*pdest;
 
-	i = 1;*/
-	if (argc == 1)
-		ft_tail_stdin();
-	if (!ft_error_arg(argc, argv))
-	{
-	}
-	return (0);
+	pdest = (unsigned char *)dest;
+	psrc = (const unsigned char *)src;
+	while (n--)
+		*pdest++ = *psrc++;
+	return (dest);
 }

@@ -1,43 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cat.c                                           :+:      :+:    :+:   */
+/*   ft_error_arg.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/26 02:29:49 by alex              #+#    #+#             */
-/*   Updated: 2020/07/04 18:05:45 by alex             ###   ########.fr       */
+/*   Created: 2020/07/05 12:55:05 by alex              #+#    #+#             */
+/*   Updated: 2020/07/05 16:56:18 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_cat.h"
+#include "ft_tail.h"
 
-int	main(int argc, char **argv)
+int	ft_error_arg(int argc, char **argv)
 {
 	int	i;
-	int	file;
 
 	i = 0;
-	if (argc == 1)
-		ft_cat_stdin();
 	while (++i < argc)
 	{
-		if (!ft_strcmp(argv[i], "-"))
-			ft_cat_stdin();
-		else
+		if (!ft_strcmp(argv[i], "-c"))
 		{
-			file = open(argv[i], O_RDONLY);
-			if (file < 0)
+			if (!argv[i + 1])
 			{
 				ft_putstr(basename(argv[0]));
-				ft_putstr(": ");
-				ft_putstr(argv[i]);
-				ft_putstr(": ");
-				ft_putstr(strerror(errno));
-				ft_putstr("\n");
+				ft_putstr(": option requires an argument --");
+				ft_putstr(" \'c\'\n");
+				ft_putstr("Try 'tail --help' for more ");
+				ft_putstr("information.\n");
+				return (1);
 			}
-			else
-				ft_cat_stdout(file);
+			else if (!ft_str_isdigit(argv[i + 1]))
+			{
+				ft_putstr(basename(argv[0]));
+				ft_putstr(": invalid number of bytes: ");
+				ft_putstr("\'");
+				ft_putstr(argv[i + 1]);
+				ft_putstr("\'\n");
+				return (1);
+			}
 		}
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 22:18:06 by alex              #+#    #+#             */
-/*   Updated: 2020/07/04 18:27:08 by alex             ###   ########.fr       */
+/*   Updated: 2020/07/07 13:48:22 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <fcntl.h>
 #include <libgen.h>
 #include <errno.h>
+#include <stdio.h>
 
 void	ft_putstr(char *str);
 void	ft_cat_stdin(void);

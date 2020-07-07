@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/04 18:38:27 by alex              #+#    #+#             */
-/*   Updated: 2020/07/05 16:50:38 by alex             ###   ########.fr       */
+/*   Created: 2020/07/05 16:06:35 by alex              #+#    #+#             */
+/*   Updated: 2020/07/05 16:11:13 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_tail.h"
 
-int	main(int argc, char **argv)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-/*	int	file;
-	int	i;
-
-	i = 1;*/
-	if (argc == 1)
-		ft_tail_stdin();
-	if (!ft_error_arg(argc, argv))
+	while (*s1 && (*s1 == *s2))
 	{
+		s1++;
+		s2++;
 	}
-	return (0);
+	return (*(const unsigned char *)s1 - *(const unsigned char *)s2);
 }

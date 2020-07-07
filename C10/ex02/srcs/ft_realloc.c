@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/04 18:38:27 by alex              #+#    #+#             */
-/*   Updated: 2020/07/05 16:50:38 by alex             ###   ########.fr       */
+/*   Created: 2020/07/05 18:31:01 by alex              #+#    #+#             */
+/*   Updated: 2020/07/07 13:28:38 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_tail.h"
 
-int	main(int argc, char **argv)
+void	*ft_realloc(void *ptr, size_t size)
 {
-/*	int	file;
-	int	i;
+	void	*new;
 
-	i = 1;*/
-	if (argc == 1)
-		ft_tail_stdin();
-	if (!ft_error_arg(argc, argv))
+	if (!ptr)
 	{
+		if (!(new = malloc(size)))
+			return (NULL);
 	}
-	return (0);
+	else
+	{
+		if(!(new = malloc(size)))
+			return (NULL);
+		ft_memcpy(new, ptr, size);
+		free(ptr);
+	}
+	return (new);
 }

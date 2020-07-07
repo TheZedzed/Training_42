@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_str_isdigit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/04 18:38:27 by alex              #+#    #+#             */
-/*   Updated: 2020/07/05 16:50:38 by alex             ###   ########.fr       */
+/*   Created: 2020/07/05 13:03:34 by alex              #+#    #+#             */
+/*   Updated: 2020/07/05 15:41:17 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_tail.h"
 
-int	main(int argc, char **argv)
+int	ft_str_isdigit(const char *str)
 {
-/*	int	file;
-	int	i;
-
-	i = 1;*/
-	if (argc == 1)
-		ft_tail_stdin();
-	if (!ft_error_arg(argc, argv))
-	{
-	}
+	while (*str && ft_isdigit(*str))
+		str++;
+	if (!str)
+		return (1);
 	return (0);
 }

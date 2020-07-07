@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tail_stdin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/04 18:38:27 by alex              #+#    #+#             */
-/*   Updated: 2020/07/05 16:50:38 by alex             ###   ########.fr       */
+/*   Created: 2020/07/05 16:13:22 by alex              #+#    #+#             */
+/*   Updated: 2020/07/06 01:53:11 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_tail.h"
 
-int	main(int argc, char **argv)
+void	ft_tail_stdin(void)
 {
-/*	int	file;
-	int	i;
+	char	*buffer;
+	char	c;
+	int	bytes;
+	//int	count;
 
-	i = 1;*/
-	if (argc == 1)
-		ft_tail_stdin();
-	if (!ft_error_arg(argc, argv))
+	bytes = 0;
+	//count = 0;
+	buffer = &c;
+	while (read(0, &c, 1) > 0)
 	{
+		bytes += 2;
+	//	ft_realloc(buffer, bytes);
+	//	buffer[bytes - 1] = c;
 	}
-	return (0);
+	write(1, buffer, bytes);
+	//buffer[bytes] = 0;
+/*	while (buffer[--bytes] && count < 11)
+	{
+		if (buffer[bytes] == '\n')
+			count++;
+	}
+	ft_putstr(&buffer[bytes]);
+	free(buffer);*/
 }
