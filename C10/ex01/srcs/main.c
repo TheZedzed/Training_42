@@ -14,20 +14,20 @@
 
 int	main(int argc, char **argv)
 {
-	int	i;
-	int	file;
+	int		i;
+	int		fd;
 
 	i = 0;
 	if (argc == 1)
-		ft_cat_stdin();
+		cat_stream(0);
 	while (++i < argc)
 	{
 		if (!ft_strcmp(argv[i], "-"))
-			ft_cat_stdin();
+			cat_stream(0);
 		else
 		{
-			file = open(argv[i], O_RDONLY);
-			if (file < 0)
+			fd = open(argv[i], O_RDONLY);
+			if (fd < 0)
 			{
 				ft_putstr(basename(argv[0]));
 				ft_putstr(": ");
@@ -37,7 +37,10 @@ int	main(int argc, char **argv)
 				ft_putstr("\n");
 			}
 			else
-				ft_cat_stdout(file);
+			{
+				cat_stream(fd);
+				close(fd);
+			}
 		}
 	}
 	return (0);

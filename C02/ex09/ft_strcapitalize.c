@@ -40,7 +40,6 @@ char	*ft_strcapitalize(char *str)
 
 	i = 0;
 	ft_strlowcase(str);
-	str[i] -= 32;
 	while (str[++i])
 	{
 		while (!is_alpha(str[i]))

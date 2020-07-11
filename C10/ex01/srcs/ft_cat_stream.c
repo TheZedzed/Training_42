@@ -1,0 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cat_stream.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/11 16:32:14 by alex              #+#    #+#             */
+/*   Updated: 2020/07/11 16:32:25 by alex             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_cat.h"
+
+int	cat_stream(int fd)
+{
+	/* NOTE: 64KB buffer is optimal for many
+	** filesystem files or devices
+	*/
+	int	bytes;
+	int	wlen;
+	int	err;
+	char 	*cur;
+	char 	buf[29 * 1024];
+
+	err = 0;
+	while (1)
+	{
+		/* read a chunk of input */
+		if ((bytes = read(fd, buf, sizeof(buf))) < 0)
+		{
+			err = errno;
+			ft_putstr("cat_stream: read error -- ");
+			ft_putstr(strerror(err));
+			break;
+		}
+		if (bytes == 0)
+			break;
+		/* write out all data read in chunk -- loop until all data
+		** read in this chunk has been output, even if it could _not_ be
+		** output in a single write call, advancing the pointer into the
+		** buffer [and shortening the remaining length]
+		*/
+		cur = buf;
+		while (bytes > 0)
+		{
+			if ((wlen = write(1, cur, bytes)) < 0)
+			{
+				err = errno;
+				ft_putstr("cat_stream: write error -- ");
+				ft_putstr(strerror(err));
+				break;
+			}
+			bytes -= wlen;
+			cur += wlen;
+		}
+	}
+	return (err);
+}

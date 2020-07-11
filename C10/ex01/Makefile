@@ -6,7 +6,7 @@
 #    By: alex <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/02 20:24:22 by alex              #+#    #+#              #
-#    Updated: 2020/07/07 13:46:15 by alex             ###   ########.fr        #
+#    Updated: 2020/07/11 18:13:46 by alex             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ NAME		:= ft_cat
 DEP_DIR		:= includes/
 SRCS_DIR	:= srcs/
 
-SRC		:= srcs/ft_cat_stdin.c srcs/ft_cat_stdout.c srcs/ft_strcmp.c \
-			srcs/ft_putstr.c srcs/main.c
+SRC		:= srcs/ft_cat_stream.c srcs/ft_strcmp.c srcs/ft_putstr.c \
+			srcs/main.c srcs/ft_puterror.c
 OBJ		:= $(SRC:.c=.o)
 
 CC		:= gcc
