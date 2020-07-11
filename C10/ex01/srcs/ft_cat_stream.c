@@ -6,7 +6,7 @@
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 16:32:14 by alex              #+#    #+#             */
-/*   Updated: 2020/07/11 16:32:25 by alex             ###   ########.fr       */
+/*   Updated: 2020/07/11 18:25:54 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ int	cat_stream(int fd)
 	char 	*cur;
 	char 	buf[29 * 1024];
 
+	/* use err = errno for error checking */
 	err = 0;
 	while (1)
 	{
 		/* read a chunk of input */
 		if ((bytes = read(fd, buf, sizeof(buf))) < 0)
 		{
-			err = errno;
 			ft_putstr("cat_stream: read error -- ");
-			ft_putstr(strerror(err));
+			ft_putstr(strerror(errno));
 			break;
 		}
 		if (bytes == 0)
@@ -46,9 +46,8 @@ int	cat_stream(int fd)
 		{
 			if ((wlen = write(1, cur, bytes)) < 0)
 			{
-				err = errno;
 				ft_putstr("cat_stream: write error -- ");
-				ft_putstr(strerror(err));
+				ft_putstr(strerror(errno));
 				break;
 			}
 			bytes -= wlen;
