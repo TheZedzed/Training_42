@@ -40,12 +40,7 @@ int	tail_stream(int fd, int num)
 	}
 	while (1)
 	{
-		if ((rlen = read(fd, buff, 29696)) < 0)
-		{
-			ft_putstr("tail_stream: read error -- ");
-			ft_putstr(strerror(errno));
-			break;
-		}
+		rlen = read(fd, buff, 29696);
 		if (rlen > 0)
 			cur = rlen - num;
 		if (rlen == 0)

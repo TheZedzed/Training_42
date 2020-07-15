@@ -19,18 +19,17 @@ int	main(int argc, char **argv)
 	int	i;
 	char	**av;
 
-	i = 1;
+	i = 0;
 	if ((nb_bytes = check_option(argc, argv)) <= 0)
 		return (0);
 	if (!(av = set_command(argv, nb_file, simple_itoa)))
 		return (0);
-	while (av[i])
+	while (av[++i])
 	{
 		if (!ft_strncmp(av[i], "-", 1))
 		{
 			head_arg(av[i], i, av[0]);
 			tail_stream(0, nb_bytes);
-			i++;
 		}
 		else
 		{
@@ -42,7 +41,6 @@ int	main(int argc, char **argv)
 				tail_stream(fd, nb_bytes);
 				close(fd);
 			}
-			i++;
 		}
 	}
 	free(av[0]);
