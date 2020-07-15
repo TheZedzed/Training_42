@@ -6,7 +6,7 @@
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 19:09:50 by alex              #+#    #+#             */
-/*   Updated: 2020/07/15 20:24:21 by alex             ###   ########.fr       */
+/*   Updated: 2020/07/15 22:19:02 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	val_error(int op)
 {
 	if (op == 37)
-		ft_putstr("Stop : modulo by zero\n");
+		ft_putstr("Stop : modulo by zero");
 	else
-		ft_putstr("Stop : division by zero\n");
+		ft_putstr("Stop : division by zero");
 }

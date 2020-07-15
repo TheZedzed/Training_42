@@ -22,7 +22,7 @@ void	ft_putnbr(int nb)
 		sign = -1;
 		ft_putchar('-');
 	}
-	if (nb >= 10 || nb <= 10)
+	if (nb >= 10 || nb <= -10)
 		ft_putnbr(sign * (nb / 10));
 	ft_putchar(sign * (nb % 10) + '0');
 }
