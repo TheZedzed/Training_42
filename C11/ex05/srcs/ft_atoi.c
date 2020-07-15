@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   opt_error.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/15 00:05:09 by alex              #+#    #+#             */
-/*   Updated: 2020/07/15 00:05:19 by alex             ###   ########.fr       */
+/*   Created: 2020/07/15 19:10:23 by alex              #+#    #+#             */
+/*   Updated: 2020/07/15 19:10:25 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_tail.h"
+#include "ft_do_op.h"
 
-/*
-** Error: use of option -c
-*/
-void	opt_error(char *argv)
+int	ft_atoi(char *s)
 {
-	if (!argv)
+	int	res;
+	int	sign;
+
+	res = 0;
+	sign = 1;
+	while (*s && (*s == '+' || *s == '-'))
 	{
-		ft_putstr("ft_tail: option requires an argument -- \'c\'\n");
-		ft_putstr("Try \'ft_tail --help\' for more information.\n");
+		if (*s == '-')
+			sign *= -1;
+		s++;
 	}
-	else
+	while (*s && (*s >= '0' && *s <= '9'))
 	{
-		ft_putstr("ft_tail: invalid number of bytes: \'");
-		ft_putstr(argv);
-		ft_putstr("\'\n");
+		res = (res * 10) + (*s - '0');
+		s++;
 	}
+	return (sign * res);
 }

@@ -52,6 +52,20 @@ int	ft_nb_split(const char *str, const char *charset)
 	return (words);
 }
 
+/* char **tab dans la mémoire:
+**
+** 	tab (adresse d'un tableau de pointeur sur char *)
+** 	 |
+** 	tab[i] (adresse d'un tableau de char (char *))
+** 	tab[i + 1]
+** 	..
+**	0
+*/
+
+/*
+** Du coup pour acceder a un tableau:
+**	tab[index] ou *(tab + index)
+*/
 void	ft_print_split(char **tab, const char *str, const char *charset)
 {
 	int	size;
@@ -60,19 +74,31 @@ void	ft_print_split(char **tab, const char *str, const char *charset)
 	index = 0;
 	while (*str)
 	{
+		/* si *str est pas dans charset (strchr retourne NULL)*/
 		if (!ft_strchr(charset, *str))
 		{
+			/* size = 1 car *str est pas dans charset */
+			/* size++ tant qu'il n'y a pas *str dans charset */
 			size = 1;
 			while (str[size] && !ft_strchr(charset, str[size]))
 				size++;
+			/* *str est dans charset donc arret */
+			/* on allou de la memoire pour le mot de taille size */
+			/* a tableau_de_pointeur[index] (tab[index])*/
+			/* on copy ce mot dans le taleau_de_poiteur[index] */
 			tab[index] = (char *)malloc((size + 1) * sizeof(char));
 			ft_strncpy(tab[index], str, size);
-			tab[index++][size] = 0;
+			tab[index++][size] = 0; //on ferme le tableau de char
+			/* on incremente str du mot qu'on vient de copier */
+			/* pour avancer dans str */
 			str += size;
 		}
+		/* si *str est dans charset */
+		/* on avance dans str */
 		else
 			str++;
 	}
+	/* fermer le tableau_de_pointeur */
 	tab[index] = 0;
 }
 

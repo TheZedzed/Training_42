@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   opt_error.c                                        :+:      :+:    :+:   */
+/*   do_op.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/15 00:05:09 by alex              #+#    #+#             */
-/*   Updated: 2020/07/15 00:05:19 by alex             ###   ########.fr       */
+/*   Created: 2020/07/15 19:09:30 by alex              #+#    #+#             */
+/*   Updated: 2020/07/15 19:09:32 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_tail.h"
+#include "ft_do_op.h"
 
-/*
-** Error: use of option -c
-*/
-void	opt_error(char *argv)
+int	do_op(int val1, int val2, int(*f)(int, int))
 {
-	if (!argv)
-	{
-		ft_putstr("ft_tail: option requires an argument -- \'c\'\n");
-		ft_putstr("Try \'ft_tail --help\' for more information.\n");
-	}
-	else
-	{
-		ft_putstr("ft_tail: invalid number of bytes: \'");
-		ft_putstr(argv);
-		ft_putstr("\'\n");
-	}
+	return(f(val1, val2));
 }

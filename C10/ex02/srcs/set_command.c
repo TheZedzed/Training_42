@@ -6,7 +6,7 @@
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 00:01:49 by alex              #+#    #+#             */
-/*   Updated: 2020/07/15 00:01:59 by alex             ###   ########.fr       */
+/*   Updated: 2020/07/15 15:55:28 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** --- then: pointer to these files
 */
 
-char	**set_command(char **argv, int (*f)(char **), char * (*g)(int))
+char	**set_command(char **argv, int(*f)(char **), char *(*g)(int))
 {
 	int	count;
 	char	**cur;

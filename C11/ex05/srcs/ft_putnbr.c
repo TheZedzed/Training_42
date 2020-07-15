@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   opt_error.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/15 00:05:09 by alex              #+#    #+#             */
-/*   Updated: 2020/07/15 00:05:19 by alex             ###   ########.fr       */
+/*   Created: 2020/07/15 19:11:00 by alex              #+#    #+#             */
+/*   Updated: 2020/07/15 19:11:01 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_tail.h"
+#include "ft_do_op.h"
 
-/*
-** Error: use of option -c
-*/
-void	opt_error(char *argv)
+void	ft_putnbr(int nb)
 {
-	if (!argv)
+	int	sign;
+
+	sign = 1;
+	if (nb < 0)
 	{
-		ft_putstr("ft_tail: option requires an argument -- \'c\'\n");
-		ft_putstr("Try \'ft_tail --help\' for more information.\n");
+		sign = -1;
+		ft_putchar('-');
 	}
-	else
-	{
-		ft_putstr("ft_tail: invalid number of bytes: \'");
-		ft_putstr(argv);
-		ft_putstr("\'\n");
-	}
+	if (nb >= 10 || nb <= 10)
+		ft_putnbr(sign * (nb / 10));
+	ft_putchar(sign * (nb % 10) + '0');
 }

@@ -6,11 +6,11 @@
 #    By: alex <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/02 20:24:22 by alex              #+#    #+#              #
-#    Updated: 2020/07/15 15:18:28 by alex             ###   ########.fr        #
+#    Updated: 2020/07/15 15:41:51 by alex             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= ft_tail
+NAME		:= ft_hexdump
 
 DEP_DIR		:= includes/
 SRCS_DIR	:= srcs/

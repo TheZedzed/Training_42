@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   opt_error.c                                        :+:      :+:    :+:   */
+/*   ft_is_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/15 00:05:09 by alex              #+#    #+#             */
-/*   Updated: 2020/07/15 00:05:19 by alex             ###   ########.fr       */
+/*   Created: 2020/07/15 16:29:27 by alex              #+#    #+#             */
+/*   Updated: 2020/07/15 16:42:44 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_tail.h"
-
-/*
-** Error: use of option -c
-*/
-void	opt_error(char *argv)
+int	ft_is_sort(int *tab, int length, int(*f)(int, int))
 {
-	if (!argv)
+	while (length--)
 	{
-		ft_putstr("ft_tail: option requires an argument -- \'c\'\n");
-		ft_putstr("Try \'ft_tail --help\' for more information.\n");
-	}
-	else
-	{
-		ft_putstr("ft_tail: invalid number of bytes: \'");
-		ft_putstr(argv);
-		ft_putstr("\'\n");
-	}
+		if (f(*tab++, *tab))
+			return (0);
+	}		
+	return (1);
 }

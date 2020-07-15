@@ -6,7 +6,7 @@
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 18:11:12 by alex              #+#    #+#             */
-/*   Updated: 2020/07/15 00:14:38 by alex             ###   ########.fr       */
+/*   Updated: 2020/07/15 15:55:07 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ void	head_arg(char *filename, int index, char *argc);
 void	put_error(char *filename, int error);
 
 char	*simple_itoa(int nb);
-char	**set_command(char **argv, int (*f)(char **), char * (*g)(int));
+char	**set_command(char **argv, int(*f)(char **), char *(*g)(int));
 
 #endif

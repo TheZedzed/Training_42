@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   opt_error.c                                        :+:      :+:    :+:   */
+/*   val_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/15 00:05:09 by alex              #+#    #+#             */
-/*   Updated: 2020/07/15 00:05:19 by alex             ###   ########.fr       */
+/*   Created: 2020/07/15 19:09:50 by alex              #+#    #+#             */
+/*   Updated: 2020/07/15 19:09:52 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_tail.h"
+#include "ft_do_op.h"
 
-/*
-** Error: use of option -c
-*/
-void	opt_error(char *argv)
+void	val_error(int op)
 {
-	if (!argv)
-	{
-		ft_putstr("ft_tail: option requires an argument -- \'c\'\n");
-		ft_putstr("Try \'ft_tail --help\' for more information.\n");
-	}
+	if (operator == 37)
+		ft_putstr("Stop : modulo by zero\n");
 	else
-	{
-		ft_putstr("ft_tail: invalid number of bytes: \'");
-		ft_putstr(argv);
-		ft_putstr("\'\n");
-	}
+		ft_putstr("Stop : division by zero\n");
 }
