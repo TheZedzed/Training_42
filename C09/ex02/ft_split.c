@@ -6,7 +6,7 @@
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 02:22:23 by alex              #+#    #+#             */
-/*   Updated: 2020/07/01 19:49:31 by alex             ###   ########.fr       */
+/*   Updated: 2020/07/15 21:02:20 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,27 @@ char	*ft_strncpy(char *dest, const char *src, int n)
 	return (dest);
 }
 
+/*
+** si ta du mal:
+** if(!condition) <=> if (!nombre (soit 0 / NULL))
+** if(condition)  <=> if (nombre > 0)
+*/
 int	ft_nb_split(const char *str, const char *charset)
 {
 	int	words;
 
 	words = 0;
+	/* tant qui a un caratere dans str (str finit par 0 ou '\0') */
 	while (*str)
 	{
+		/* tant qu'il y a un caractere dans str et qu'il est dans charset */
+		/* strchr retourne une adresse ou NULL */
 		while (*str && ft_strchr(charset, *str))
 			str++;
+		/* tant qu'il y a un caractere dans str et qu'il n'est pas dans charset */
 		while (*str && !ft_strchr(charset, *str))
 			str++;
+		/* si str n'est pas fermé --> *str != 0 ou '\0' on recense un mot */
 		if (*str)
 			words++;
 	}
