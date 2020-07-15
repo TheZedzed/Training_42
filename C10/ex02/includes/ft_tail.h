@@ -6,29 +6,32 @@
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 18:11:12 by alex              #+#    #+#             */
-/*   Updated: 2020/07/05 17:52:45 by alex             ###   ########.fr       */
+/*   Updated: 2020/07/15 00:14:38 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	FT_TAIL_H
 #define	FT_TAIL_H
 
-#include <stdlib.h>
 #include <unistd.h>
-#include <fcntl.h>
+#include <stdlib.h>
 #include <string.h>
-#include <libgen.h>
+#include <errno.h>
+#include <fcntl.h>
 
-int	ft_isdigit(int c);
-int	ft_isspace(int c);
-int	ft_isoperator(int c);
-int	ft_atoi(const char *str);
-int	ft_str_isdigit(const char *str);
-int	ft_strcmp(const char *s1, const char *s2);
-int	ft_error_arg(int argc, char **argv);
-void	ft_putstr(char *str);
-void	ft_tail_stdin(void);
-void	*ft_realloc(void *ptr, size_t size);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
+int	ft_strlen(char *s);
+int	tail_stream(int fd, int num);
+int	nb_file(char **argv);
+int	check_num(char *str);
+int	check_option(int ac, char **av);
+int	ft_strncmp(char *s1, char *s2, size_t n);
+
+void	ft_putstr(char *s);
+void	opt_error(char *argv);
+void	head_arg(char *filename, int index, char *argc);
+void	put_error(char *filename, int error);
+
+char	*simple_itoa(int nb);
+char	**set_command(char **argv, int (*f)(char **), char * (*g)(int));
 
 #endif

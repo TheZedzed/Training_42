@@ -12,8 +12,8 @@
 
 #include "ft_tail.h"
 
-void	ft_putstr(char *str)
+void	ft_putstr(char *s)
 {
-	while (*str)
-		write(1, str++, 1);
+	while (*s)
+		write(1, s++, 1);
 }

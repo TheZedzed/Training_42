@@ -23,9 +23,9 @@ void	ft_display_file(const char *filename)
 		ft_putstr("Cannot read file.\n");
 	else
 	{
-		while ((bytes = read(file, &buffer, 4095)))
+		while ((bytes = read(file, buffer, 4096)))
 		{
-			write(1, &buffer, bytes);
+			write(1, buffer, bytes);
 		}
 		close(file);
 	}

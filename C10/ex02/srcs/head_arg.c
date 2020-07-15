@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   head_arg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/05 15:44:16 by alex              #+#    #+#             */
-/*   Updated: 2020/07/05 16:01:58 by alex             ###   ########.fr       */
+/*   Created: 2020/07/15 00:05:56 by alex              #+#    #+#             */
+/*   Updated: 2020/07/15 00:06:07 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_tail.h"
 
-int	ft_atoi(const char *str)
+/*
+** Check for filename header
+*/
+void	head_arg(char *filename, int index, char *argc)
 {
-	int	res;
-	int	sign;
-
-	res = 0;
-	sign = 1;
-	while (*str && ft_isspace(*str))
-		str++;
-	while (*str && ft_isoperator(*str))
+	if (check_num(argc) > 1)
 	{
-		if (*str == '-')
-			sign *= -1;
-		str++;
+		if (index != 1)
+			ft_putstr("\n");
+		if (!ft_strncmp(filename, "-", 1))
+			ft_putstr("==> standard input <==\n");
+		else
+		{
+			ft_putstr("==> ");
+			ft_putstr(filename);
+			ft_putstr(" <==\n");
+		}
 	}
-	while (*str && ft_isdigit(*str))
-	{
-		res = res * 10 + (*str - '0');
-		str++;
-	}
-	return (sign * res);
 }

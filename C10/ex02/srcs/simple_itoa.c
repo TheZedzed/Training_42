@@ -1,18 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   simple_itoa.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/05 15:54:37 by alex              #+#    #+#             */
-/*   Updated: 2020/07/05 15:55:53 by alex             ###   ########.fr       */
+/*   Created: 2020/07/15 00:00:45 by alex              #+#    #+#             */
+/*   Updated: 2020/07/15 00:00:57 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_tail.h"
 
-int	ft_isspace(int c)
+/*
+** Converts an int to a string
+*/
+char	*simple_itoa(int nb)
 {
-	return (c == 32 || (c >= 9 && c <= 13));
+	int	len;
+	int	temp;
+	char	*tab;
+
+	len = 1;
+	temp = nb;
+	while ((temp /= 10))
+		len++;
+	if (!(tab = (char *) malloc(sizeof(tab) * (len + 1))))
+		return (NULL);
+	tab[len] = 0;
+	while (--len >= 0)
+	{
+		tab[len] = (nb % 10) + '0';
+		nb /= 10;
+	}
+	return (tab);
 }

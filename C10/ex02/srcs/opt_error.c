@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isdigit.c                                   :+:      :+:    :+:   */
+/*   arg_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/05 13:03:34 by alex              #+#    #+#             */
-/*   Updated: 2020/07/05 15:41:17 by alex             ###   ########.fr       */
+/*   Created: 2020/07/15 00:05:09 by alex              #+#    #+#             */
+/*   Updated: 2020/07/15 00:05:19 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_tail.h"
 
-int	ft_str_isdigit(const char *str)
+/*
+** Error: use of option -c
+*/
+void	opt_error(char *argv)
 {
-	while (*str && ft_isdigit(*str))
-		str++;
-	if (!str)
-		return (1);
-	return (0);
+	if (!argv)
+	{
+		ft_putstr("ft_tail: option requires an argument -- \'c\'\n");
+		ft_putstr("Try \'ft_tail --help\' for more information.\n");
+	}
+	else
+	{
+		ft_putstr("ft_tail: invalid number of bytes: \'");
+		ft_putstr(argv);
+		ft_putstr("\'\n");
+	}
 }

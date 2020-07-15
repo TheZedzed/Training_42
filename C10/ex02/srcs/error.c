@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/20 12:38:49 by alex              #+#    #+#             */
-/*   Updated: 2020/07/05 19:24:54 by alex             ###   ########.fr       */
+/*   Created: 2020/07/15 00:06:52 by alex              #+#    #+#             */
+/*   Updated: 2020/07/15 00:07:29 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_tail.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+/*
+** Error: open filename
+*/
+void	put_error(char *filename, int error)
 {
-	const unsigned char	*psrc;
-	unsigned char		*pdest;
-
-	pdest = (unsigned char *)dest;
-	psrc = (const unsigned char *)src;
-	while (n--)
-		*pdest++ = *psrc++;
-	return (dest);
+	ft_putstr("ft_tail: cannot open \'");
+	ft_putstr(filename);
+	ft_putstr("\' for reading: ");
+	ft_putstr(strerror(error));
+	ft_putstr("\n");
 }

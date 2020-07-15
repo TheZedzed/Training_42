@@ -1,18 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isoperator.c                                    :+:      :+:    :+:   */
+/*   check_num.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/05 15:51:38 by alex              #+#    #+#             */
-/*   Updated: 2020/07/05 15:52:57 by alex             ###   ########.fr       */
+/*   Created: 2020/07/05 13:03:34 by alex              #+#    #+#             */
+/*   Updated: 2020/07/05 15:41:17 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_tail.h"
 
-int	ft_isoperator(int c)
+/*
+** Checks if the string is an int 
+*/
+int	check_num(char *str)
 {
-	return (c == 37 || c == 42 || c == 43 || c == 45 || c == 47);
+	int	res;
+
+	res = 0;
+	if (!str)
+		res = -1;
+	else
+	{
+		while (*str >= 48 && *str <= 57)
+		{
+			res = (res * 10) + (*str - '0');
+			str++;
+		}
+		if (*str)
+			res = -1;			
+	}
+	return (res);
 }

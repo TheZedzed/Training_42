@@ -1,18 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   nb_files.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/05 15:41:37 by alex              #+#    #+#             */
-/*   Updated: 2020/07/05 15:44:05 by alex             ###   ########.fr       */
+/*   Created: 2020/07/14 23:59:35 by alex              #+#    #+#             */
+/*   Updated: 2020/07/14 23:59:46 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_tail.h"
 
-int	ft_isdigit(int c)
+/*
+** Checks the number of filename
+*/
+int	nb_file(char **argv)
 {
-	return (c >= 48 && c <= 57);
+	int	count;
+
+	count = 0;
+	++argv;
+	while (*argv)
+	{
+		if (!ft_strncmp(*argv, "-c", 2))
+		{
+			if (ft_strlen(*argv) > 2)
+				argv++;
+			else
+				argv += 2;
+		}
+		else
+		{
+			argv++;
+			count++;
+		}
+	}
+	return (count);
 }

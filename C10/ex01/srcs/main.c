@@ -28,14 +28,7 @@ int	main(int argc, char **argv)
 		{
 			fd = open(argv[i], O_RDONLY);
 			if (fd < 0)
-			{
-				ft_putstr(basename(argv[0]));
-				ft_putstr(": ");
-				ft_putstr(argv[i]);
-				ft_putstr(": ");
-				ft_putstr(strerror(errno));
-				ft_putstr("\n");
-			}
+				ft_puterror(argv[i], errno);
 			else
 			{
 				cat_stream(fd);

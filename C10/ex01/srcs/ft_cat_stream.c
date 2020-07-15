@@ -17,7 +17,7 @@ int	cat_stream(int fd)
 	/* NOTE: 64KB buffer is optimal for many
 	** filesystem files or devices
 	*/
-	int	bytes;
+	int	rlen;
 	int	wlen;
 	int	err;
 	char 	*cur;
@@ -28,13 +28,13 @@ int	cat_stream(int fd)
 	while (1)
 	{
 		/* read a chunk of input */
-		if ((bytes = read(fd, buf, sizeof(buf))) < 0)
+		if ((rlen = read(fd, buf, sizeof(buf))) < 0)
 		{
 			ft_putstr("cat_stream: read error -- ");
 			ft_putstr(strerror(errno));
 			break;
 		}
-		if (bytes == 0)
+		if (rlen == 0)
 			break;
 		/* write out all data read in chunk -- loop until all data
 		** read in this chunk has been output, even if it could _not_ be
@@ -42,15 +42,15 @@ int	cat_stream(int fd)
 		** buffer [and shortening the remaining length]
 		*/
 		cur = buf;
-		while (bytes > 0)
+		while (rlen > 0)
 		{
-			if ((wlen = write(1, cur, bytes)) < 0)
+			if ((wlen = write(1, cur, rlen)) < 0)
 			{
 				ft_putstr("cat_stream: write error -- ");
 				ft_putstr(strerror(errno));
 				break;
 			}
-			bytes -= wlen;
+			rlen -= wlen;
 			cur += wlen;
 		}
 	}
