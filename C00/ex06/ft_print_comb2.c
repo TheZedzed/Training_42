@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_comb2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azeraoul <azeraoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/11 15:09:38 by azeraoul          #+#    #+#             */
-/*   Updated: 2020/03/11 16:44:21 by azeraoul         ###   ########.fr       */
+/*   Created: 2020/08/17 23:23:14 by alex              #+#    #+#             */
+/*   Updated: 2020/08/18 00:59:28 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,34 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	display(int nb)
+void	display(int tab[], int size)
 {
-	ft_putchar(nb / 10 + '0');
-	ft_putchar(nb % 10 + '0');
+	int	i;
+
+	i = -1;
+	while (++i < size)
+	{
+		ft_putchar(tab[i] / 10 + '0');
+		ft_putchar(tab[i] % 10 + '0');
+		if (i < size - 1)
+			ft_putchar(' ');
+	}
+	if (tab[0] != 98)
+		write(1, ", ", 2);
 }
 
 void	ft_print_comb2(void)
 {
-	int	first;
-	int	second;
+	int	tab[2] = {0};
 
-	first = 0;
-	second = 0;
-	while (first < 99)
+	while (tab[0] < 99)
 	{
-		second = first + 1;
-		while (second <= 99)
+		tab[1] =  tab[0] + 1;
+		while (tab[1] < 100)
 		{
-			display(first);
-			ft_putchar(' ');
-			display(second);
-			if (first != 98 || second != 99)
-			{
-				ft_putchar(',');
-				ft_putchar(' ');
-			}
-			second++;
+			display(tab, 2);
+			tab[1]++;
 		}
-		first++;
+		tab[0]++;
 	}
 }

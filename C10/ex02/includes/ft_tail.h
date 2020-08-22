@@ -25,13 +25,10 @@ int	nb_file(char **argv);
 int	check_num(char *str);
 int	check_option(int ac, char **av);
 int	ft_strncmp(char *s1, char *s2, size_t n);
-
 void	ft_putstr(char *s);
 void	opt_error(char *argv);
 void	head_arg(char *filename, int index, char *argc);
 void	put_error(char *filename, int error);
-
 char	*simple_itoa(int nb);
 char	**set_command(char **argv, int(*f)(char **), char *(*g)(int));
-
 #endif

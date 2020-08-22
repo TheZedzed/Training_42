@@ -14,7 +14,7 @@ int	ft_is_sort(int *tab, int length, int(*f)(int, int))
 {
 	while (length--)
 	{
-		if (f(*tab++, *tab))
+		if ((*f)(*tab++, *tab))
 			return (0);
 	}		
 	return (1);

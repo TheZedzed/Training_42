@@ -6,7 +6,7 @@
 /*   By: azeraoul <azeraoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 11:13:02 by azeraoul          #+#    #+#             */
-/*   Updated: 2020/03/11 14:43:53 by azeraoul         ###   ########.fr       */
+/*   Updated: 2020/08/18 01:16:59 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,44 +17,34 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	display(int a, int b, int c)
+void	display(int tab[], int size)
 {
-	if (a != 7 || b != 8 || c != 9)
-	{
-		ft_putchar(a + '0');
-		ft_putchar(b + '0');
-		ft_putchar(c + '0');
-		ft_putchar(',');
-		ft_putchar(' ');
-	}
-	else
-	{
-		ft_putchar(a + '0');
-		ft_putchar(b + '0');
-		ft_putchar(c + '0');
-	}
+	int	i;
+
+	i = -1;
+	while (++i < size)
+		ft_putchar(tab[i] + '0');
+	if (tab[0] != 7)
+		write(1, ", ",2);
 }
 
 void	ft_print_comb(void)
 {
-	int	i;
-	int	j;
-	int	k;
+	int	tab[3] = {0};
 
-	i = 0;
-	while (i <= 9)
+	while (tab[0] < 10)
 	{
-		j = i + 1;
-		while (j <= 9)
+		tab[1] = tab[0] + 1;
+		while (tab[1] < 10)
 		{
-			k = j + 1;
-			while (k <= 9)
+			tab[2] = tab[1] + 1;
+			while (tab[2] < 10)
 			{
-				display(i, j, k);
-				k++;
+				display(tab, 3);
+				tab[2]++;
 			}
-			++j;
+			tab[1]++;
 		}
-		++i;
+		tab[0]++;
 	}
 }

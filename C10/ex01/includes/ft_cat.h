@@ -23,5 +23,4 @@ void	ft_puterror(const char *file, int error);
 void	ft_putstr(const char *s);
 int	ft_strcmp(const char *s1, const char *s2);
 int	cat_stream(int fd);
-
 #endif

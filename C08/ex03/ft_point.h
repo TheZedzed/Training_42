@@ -19,6 +19,5 @@ typedef struct	s_point
 	int	y;
 }		t_point;
 
-void	set_point(t_point *point);
-
+void		set_point(t_point *point);
 #endif

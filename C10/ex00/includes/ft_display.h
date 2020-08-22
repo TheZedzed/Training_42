@@ -18,5 +18,4 @@
 
 void	ft_display_file(const char *filename)
 void	ft_putstr(char *str);
-
 #endif

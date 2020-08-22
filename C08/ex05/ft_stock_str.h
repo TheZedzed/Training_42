@@ -15,14 +15,13 @@
 
 typedef struct		s_stock_str
 {
-	int	size;
-	char	*str;
-	char	*copy;
+	int		size;
+	char		*str;
+	char		*copy;
 }			t_stock_str;
 
 void			ft_putnbr(int nbr);
 void			ft_putchar(char c);
 void			ft_putstr(char *str);
 void			ft_show_tab(struct s_stock_str *par);
-
 #endif

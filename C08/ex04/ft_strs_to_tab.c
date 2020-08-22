@@ -41,7 +41,7 @@ char	*ft_strdup(char *str)
 {
 	char	*copy;
 
-	copy = malloc(sizeof(char) * ft_strlen(str) + 1);
+	copy = malloc(sizeof(*copy) * ft_strlen(str) + 1);
 	if (copy == NULL)
 		return (NULL);
 	ft_strcpy(copy, str);

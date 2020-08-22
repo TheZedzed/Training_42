@@ -18,7 +18,7 @@
 ** --- then: pointer to these files
 */
 
-char	**set_command(char **argv, int(*f)(char **), char *(*g)(int))
+char	**set_command(char **argv, int(*f)(char **), char*(*g)(int))
 {
 	int	count;
 	char	**cur;

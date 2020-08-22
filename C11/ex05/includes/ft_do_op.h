@@ -19,7 +19,6 @@ void	ft_putchar(char c);
 void	ft_putstr(char *s);
 void	ft_putnbr(int nb);
 void	val_error(int op);
-
 int	ft_multi(int a, int b);
 int	ft_div(int a, int b);
 int	ft_add(int a, int b);
@@ -28,5 +27,4 @@ int	ft_mod(int a, int b);
 int	chosen_func(int op);
 int	ft_atoi(char *s);
 int	do_op(int val1, int val2, int(*f)(int, int));
-
 #endif

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_do_op.h"
-#include <stdio.h>
 
 int	main(int ac, char **av)
 {
@@ -19,7 +18,7 @@ int	main(int ac, char **av)
 	int	val2;
 	int	res;
 	int	operator;
-	int	(*f[5])(int, int) = {ft_add, ft_subs, ft_multi, ft_div, ft_mod};
+	int	(*f[])(int, int) = {ft_add, ft_subs, ft_multi, ft_div, ft_mod};
 
 	if (ac == 4)
 	{

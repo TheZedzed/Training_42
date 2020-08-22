@@ -29,13 +29,12 @@
 #define	SUCCESS		0
 #endif
 
-typedef enum	e_bool
+typedef enum		e_bool
 {
-	TRUE,
-	FALSE
-}		t_bool;
+	TRUE = 1,
+	FALSE = 0
+}			t_bool;
 
-t_bool		ft_is_even(int nbr);
-void		ft_putstr(char *str);
-
+t_bool			ft_is_even(int nbr);
+void			ft_putstr(char *str);
 #endif

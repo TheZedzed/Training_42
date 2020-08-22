@@ -13,5 +13,5 @@
 int	ft_map(int *tab, int length, int(*f)(int))
 {
 	while (length--)
-		*tab = f(*tab++);
+		*tab = (*f)(*tab++);
 }
