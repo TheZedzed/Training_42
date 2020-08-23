@@ -10,14 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#define  SIZE	2
+#define  SIZE	4
 #include <unistd.h>
 #include <stdio.h>
 
-void	ft_putchar(char c)
+/*
+void	display_tab(int tab[SIZE][SIZE], int row, int column, int backtrack)
 {
-	write(1, &c, 1);
+	char	nb;
+	int	j;
+	int	i;
+
+	i = -1;
+	if (!backtrack)
+		printf("\nRemoved quenn chess[%d][%d]:\n", row, column);
+	else if (backtrack == 1)
+		printf("\nAdded quenn chess[%d][%d]:\n", row, column);
+	else
+		write(1, "\nSolution:\n", 11);
+	while (++i < SIZE)
+	{
+		j = -1;
+		while (++j < SIZE)
+		{
+			nb = tab[i][j] + 48;
+			write(1, &nb, 1);
+		}
+		write(1, "\n", 1);
+	}
 }
+*/
 
 void	display_answer(int tab[SIZE])
 {
@@ -55,29 +77,29 @@ int	is_safe(int tab[SIZE][SIZE], int row, int col)
 	return (1);
 }
 
-int	solver(int tab[SIZE][SIZE], int solution[SIZE + 1], int col)
+void	solver(int tab[SIZE][SIZE], int solution[SIZE + 1], int col)
 {
 	int	i;
 
 	i = -1;
 	if (col == SIZE)
 	{
+		//display_tab(tab, i, col, 2);
 		solution[SIZE]++;
 		display_answer(solution);
-		return (1);
 	}
 	while (++i < SIZE)
 	{
 		if (is_safe(tab, i, col))
 		{
 			tab[i][col] = 1;
+			//display_tab(tab, i, col, 1);
 			solution[i] = col;
-			if (solver(tab, solution, col + 1))
-				return (1);
+			solver(tab, solution, col + 1);
 			tab[i][col] = 0;
+			//display_tab(tab, i, col, 0);
 		}
 	}
-	return (0);
 }
 
 int	ft_ten_queens_puzzle(void)
@@ -91,8 +113,11 @@ int	ft_ten_queens_puzzle(void)
 
 int	main(void)
 {
-	if (ft_ten_queens_puzzle() > 0)
-		printf("%d\n", ft_ten_queens_puzzle());
-	printf("No solutions.\n");
+	int	val;
+
+	if(!(val = ft_ten_queens_puzzle()))
+		printf("No solution\n");
+	else
+		printf("%d\n", val);
 	return (0);
 }
