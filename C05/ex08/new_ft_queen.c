@@ -6,7 +6,7 @@
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 09:59:44 by alex              #+#    #+#             */
-/*   Updated: 2020/09/11 12:55:57 by alex             ###   ########.fr       */
+/*   Updated: 2020/09/13 11:10:08 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	safe_placement(int *tab, int column, int row)
 
 void	ten_queens_solver(int *tab, int *count, int row)
 {
-	int	i;
+	int	column;
 
-	i = -1;
+	column = -1;
 	if (row == 10)
 	{
 		display_answer(tab);
@@ -59,11 +59,11 @@ void	ten_queens_solver(int *tab, int *count, int row)
 	}
 	else
 	{
-		while (++i < 10)
+		while (++column < 10)
 		{
-			if (safe_placement(tab, i, row))
+			if (safe_placement(tab, column, row))
 			{
-				tab[row] = i;
+				tab[row] = column;
 				ten_queens_solver(tab, count, row + 1);
 			}
 		}
