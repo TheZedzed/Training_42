@@ -17,7 +17,7 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-int	ft_strlen(char *str)
+int		ft_strlen(char *str)
 {
 	int	len;
 
@@ -27,10 +27,10 @@ int	ft_strlen(char *str)
 	return (len);
 }
 
-int	is_error(char *str)
+int		is_error(char *str)
 {
-	unsigned int	i;
-	unsigned int	j;
+	int	i;
+	int	j;
 
 	i = 0;
 	if (ft_strlen(str) < 2)
@@ -44,10 +44,9 @@ int	is_error(char *str)
 			return (1);
 		i++;
 	}
-	if (str[i] == '\0')
-		return (0);
-	else
+	if (str[i] != '\0')
 		return (1);
+	return (0);
 }
 
 void	ft_putnbr_base(int nbr, char *base)
@@ -66,6 +65,6 @@ void	ft_putnbr_base(int nbr, char *base)
 		}
 		if (nbr >= the_base || nbr <= -the_base)
 			ft_putnbr_base(sign * (nbr / the_base), base);
-		ft_putchar(base[(sign * nbr) % the_base]);
+		ft_putchar(base[sign * (nbr % the_base)]);
 	}
 }

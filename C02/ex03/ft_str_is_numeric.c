@@ -12,16 +12,11 @@
 
 int	ft_str_is_numeric(char *str)
 {
-	unsigned int	i;
-
-	i = 0;
-	if (!(*str))
-		return (1);
-	while (*(str + i))
+	while (*str)
 	{
-		if (!(*(str + i) >= '1' && *(str + i) <= '9'))
+		if (!(*str >= 48 && *str <= 57))
 			return (0);
-		i++;
+		str++;
 	}
 	return (1);
 }

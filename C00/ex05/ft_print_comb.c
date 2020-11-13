@@ -23,19 +23,29 @@ void	display(int tab[], int size)
 
 	i = -1;
 	while (++i < size)
-		ft_putchar(tab[i] + '0');
-	if (tab[0] != 7)
-		write(1, ", ",2);
+		ft_putchar(tab[i] + 48);
+	if (tab[0] != (10 - size))
+		write(1, ", ", 2);
+}
+
+void	init_tab(int tab[3])
+{
+	int	i;
+
+	i = -1;
+	while (++i < 3)
+		tab[i] = 0;
 }
 
 void	ft_print_comb(void)
 {
-	int	tab[3] = {0};
+	int	tab[3];
 
-	while (tab[0] < 10)
+	init_tab(tab);
+	while (tab[0] < 8)
 	{
 		tab[1] = tab[0] + 1;
-		while (tab[1] < 10)
+		while (tab[1] < 9)
 		{
 			tab[2] = tab[1] + 1;
 			while (tab[2] < 10)

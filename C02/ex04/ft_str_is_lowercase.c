@@ -12,16 +12,11 @@
 
 int	ft_str_is_lowercase(char *str)
 {
-	unsigned int	i;
-
-	i = 0;
-	if (!(*str))
-		return (1);
-	while (*(str + i))
+	while (*str)
 	{
-		if (!(*(str + i) >= 'a' && *(str + i) <= 'z'))
+		if (!(*str >= 97 && *str <= 122))
 			return (0);
-		i++;
+		str++;
 	}
 	return (1);
 }

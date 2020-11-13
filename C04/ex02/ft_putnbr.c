@@ -29,5 +29,5 @@ void	ft_putnbr(int nb)
 	}
 	if (nb <= -10 || nb >= 10)
 		ft_putnbr((nb / 10) * sign);
-	ft_putchar(sign * (nb % 10) + '0');
+	ft_putchar(sign * (nb % 10) + 48);
 }

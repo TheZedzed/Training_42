@@ -10,42 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strlowcase(char *str)
+char		*ft_strlowcase(char *str)
 {
-	unsigned int	i;
+	char	*ptr;
 
-	i = 0;
-	while (str[i])
+	ptr = str;
+	while (*ptr)
 	{
-		if (str[i] >= 'A' && str[i] <= 'Z')
-			str[i] += 32;
-		i++;
+		if (*ptr >= 65 && *ptr <= 90)
+			*ptr += 32;
+		ptr++;
 	}
 	return (str);
 }
 
 int	is_alpha(char c)
 {
-	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')); 
+	return ((c >= 97 && c <= 122) || (c >= 65 && c <= 90));
 }
 
 int	is_num(char c)
 {
-	return (c >= '0' && c <= '9');
+	return (c >= 48 && c <= 57);
 }
 
-char	*ft_strcapitalize(char *str)
+char		*ft_strcapitalize(char *str)
 {
-	unsigned int	i;
+	char	*ptr;
 
-	i = 0;
+	ptr = str;
 	ft_strlowcase(str);
-	while (str[++i])
+	while (*ptr)
 	{
-		while (!is_alpha(str[i]))
-			i++;
-		if (!(is_num(str[i - 1]) || is_alpha(str[i - 1])))
-			str[i] -= 32;
+		if (is_alpha(*ptr) && !(is_num(*(ptr - 1)) || is_alpha(*(ptr - 1))))
+			*ptr -= 32;
+		ptr++;
 	}
 	return (str);
 }

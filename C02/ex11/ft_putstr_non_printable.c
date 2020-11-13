@@ -12,37 +12,23 @@
 
 #include <unistd.h>
 
-void	ft_putchar(char c)
+void				ft_putstr_non_printable(char *str)
 {
-	write(1, &c, 1);
-}
+	unsigned char	*ptr;
+	const char		*hex;
 
-void	ft_print_hexa(int c)
-{
-	char	*hex;
-
+	ptr = (unsigned char *)str;
 	hex = "0123456789abcdef";
-	if (c >= 16)
-		ft_print_hexa(c / 16);
-	ft_putchar(hex[c % 16]);
-}
-
-void	ft_putstr_non_printable(char *str)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (str[i])
+	while (*ptr)
 	{
-		if ((str[i] >= 0 && str[i] < 32) || str[i] == 127)
+		if (*ptr < 32 || *ptr > 126)
 		{
-			ft_putchar('\\');
-			if (str[i] < 10)
-				ft_putchar('0');
-			ft_print_hexa(str[i]);
+			write(1, "\\", 1);
+			write(1, &hex[(*ptr / 16)], 1);
+			write(1, &hex[(*ptr % 16)], 1);
 		}
 		else
-			ft_putchar(str[i]);
-		i++;
+			write(1, ptr, 1);
+		ptr++;
 	}
 }

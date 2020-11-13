@@ -33,10 +33,20 @@ void	display(int tab[], int size)
 		write(1, ", ", 2);
 }
 
+void	init_tab(int tab[2])
+{
+	int	i;
+
+	i = -1;
+	while (++i < 2)
+		tab[i] = 0;
+}
+
 void	ft_print_comb2(void)
 {
-	int	tab[2] = {0};
+	int	tab[2];
 
+	init_tab(tab);
 	while (tab[0] < 99)
 	{
 		tab[1] =  tab[0] + 1;

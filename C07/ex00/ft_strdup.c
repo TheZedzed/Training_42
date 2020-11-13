@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 
-int	ft_strlen(char *str)
+int			ft_strlen(char *str)
 {
 	int	len;
 
@@ -22,9 +22,9 @@ int	ft_strlen(char *str)
 	return (len);
 }
 
-char	*ft_strcpy(char *dest, char *src)
+char		*ft_strcpy(char *dest, char *src)
 {
-	int	index;
+	int		index;
 
 	index = 0;
 	while (src[index])
@@ -36,7 +36,7 @@ char	*ft_strcpy(char *dest, char *src)
 	return (dest);
 }
 
-char	*ft_strdup(char *str)
+char		*ft_strdup(char *str)
 {
 	char	*new_str;
 

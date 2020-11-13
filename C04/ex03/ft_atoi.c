@@ -10,32 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	is_space(char c)
+int		is_space(char c)
 {
 	return (c == 32 || (c <= 13 && c >= 9));
 }
 
-int	ft_atoi(char *str)
+int		ft_atoi(char *str)
 {
 	int	nb;
 	int	sign;
-	int	index;
 
 	nb = 0;
 	sign = 1;
-	index = 0;
-	while (is_space(str[index]))
-		index++;
-	while (str[index] == '-' || str[index] == '+')
+	while (is_space(*str))
+		str++;
+	while (*str == '-' || *str == '+')
 	{
-		if (str[index] == '-')
+		if (*str == '-')
 			sign *= -1;
-		index++;
+		str++;
 	}
-	while (str[index] >= '0' && str[index] <= '9')
+	while (*str >= '0' && *str <= '9')
 	{
-		nb = (nb * 10) + (str[index] -'0');
-		index++;
+		nb = (nb * 10) + (*str - 48);
+		str++;
 	}
 	return (sign * nb);
 }

@@ -12,33 +12,25 @@
 
 #include <unistd.h>
 
-void	ft_putchar(char c)
+int		ft_strlen(char *str)
 {
-	write(1, &c, 1);
+	int	len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }
 
-void	ft_putstr(char *str)
-{
-	int	index;
-
-	index = 0;
-	while (str[index])
-	{
-		ft_putchar(str[index]);
-		index++;
-	}
-}
-
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	int	i;
 
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (++i < argc)
 	{
-		ft_putstr(argv[i]);
-		ft_putchar('\n');
-		i++;
+		write(1, argv[i], ft_strlen(argv[i]));
+		write(1, "\n", 1);
 	}
 	return (0);
 }

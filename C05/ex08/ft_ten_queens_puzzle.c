@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ten_queens_puzzle.c                             :+:      :+:    :+:   */
+/*   new_ft_queen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/07 20:21:40 by alex              #+#    #+#             */
-/*   Updated: 2020/08/19 22:08:58 by alex             ###   ########.fr       */
+/*   Created: 2020/09/11 09:59:44 by alex              #+#    #+#             */
+/*   Updated: 2020/09/13 11:10:08 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define  SIZE	4
 #include <unistd.h>
 #include <stdio.h>
 
-void	display_answer(int tab[SIZE])
+void		display_answer(int *tab)
 {
 	char	nb;
-	int	i;
+	int		i;
 
 	i = -1;
-	while (++i < SIZE)
+	while (++i < 10)
 	{
 		nb = tab[i] + 48;
 		write(1, &nb, 1);
@@ -28,66 +27,59 @@ void	display_answer(int tab[SIZE])
 	write(1, "\n", 1);
 }
 
-int	is_safe(int tab[SIZE][SIZE], int row, int col)
+int			abs(int nb)
 {
-	int	i;
-	int	j;
+	return (nb < 0 ? nb * -1 : nb);
+}
+
+int			safe_placement(int *tab, int column, int row)
+{
+	int		j;
+	int		val;
 
 	j = -1;
-	while (++j < col)
-		if (tab[row][j])
+	while (++j < row)
+	{
+		val = tab[j];
+		if (val == column || abs(row - j) == abs(column - val))
 			return (0);
-	i = row + 1;
-	j = col + 1;
-	while (--i >= 0 && --j >= 0)
-		if (tab[i][j])
-			return (0);
-	i = row - 1;
-	j = col + 1;
-	while (++i < SIZE && --j >= 0)
-		if (tab[i][j])
-			return (0); 	
+	}
 	return (1);
 }
 
-void	solver(int tab[SIZE][SIZE], int solution[SIZE + 1], int col)
+void		ten_queens_solver(int *tab, int *count, int row)
 {
-	int	i;
+	int		column;
 
-	i = -1;
-	if (col == SIZE)
+	column = -1;
+	if (row == 10)
 	{
-		solution[SIZE]++;
-		display_answer(solution);
+		display_answer(tab);
+		(*count)++;
 	}
-	while (++i < SIZE)
+	else
 	{
-		if (is_safe(tab, i, col))
+		while (++column < 10)
 		{
-			tab[i][col] = 1;
-			solution[i] = col;
-			solver(tab, solution, col + 1);
-			tab[i][col] = 0;
+			if (safe_placement(tab, column, row))
+			{
+				tab[row] = column;
+				ten_queens_solver(tab, count, row + 1);
+			}
 		}
 	}
 }
 
-int	ft_ten_queens_puzzle(void)
+int			ft_ten_queens_puzzle(void)
 {
-	int	tab[SIZE][SIZE] = {0};
-	int	res[SIZE + 1] = {0};
+	int		nb_of_solution;
+	int		tab[10];
+	int		i;
 
-	solver(tab, res, 0);
-	return (res[SIZE]);
-}
-
-int	main(void)
-{
-	int	val;
-
-	if(!(val = ft_ten_queens_puzzle()))
-		printf("No solution\n");
-	else
-		printf("%d\n", val);
-	return (0);
+	i = -1;
+	nb_of_solution = 0;
+	while (++i < 10)
+		tab[i] = 0;
+	ten_queens_solver(tab, &nb_of_solution, 0);
+	return (nb_of_solution);
 }

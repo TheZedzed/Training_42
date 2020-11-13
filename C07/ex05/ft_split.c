@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int	is_separator(char c, char *charset)
+int		is_separator(char c, char *charset)
 {
 	int	i;
 
@@ -25,75 +25,70 @@ int	is_separator(char c, char *charset)
 	return (1);
 }
 
-int	ft_word_len(int *index, char *str, char *charset)
+int		ft_nb_words(char *str, char *charset)
 {
-	int	begin;
-	int	end;
-
-	while (str[*index] && is_separator(str[*index], charset))
-		(*index)++;
-	begin = *index;
-	end = begin;
-	while (str[end] && !is_separator(str[end], charset))
-		end++;
-	return (end - begin);
-}
-
-int	ft_nb_words(char *str, char *charset)
-{
-	int	i;
 	int	words;
 
-	i = 0;
 	words = 0;
-	while (str[i])
+	while (*str)
 	{
-		while (str[i] && is_separator(str[i], charset))
-			i++;
-		while (str[i] && !is_separator(str[i], charset))
-			i++;
-		words++;
+		if (!is_separator(*str, charset))
+		{
+			words++;
+			while (*str && !is_separator(*str, charset))
+				str++;
+		}
+		else
+			str++;
 	}
 	return (words);
 }
 
-char	*ft_new_strncpy(int *index, char *dest, char *src, int n)
+char		*word(char *str, char *charset)
 {
-	int	i;
+	char 	*res;
+	int		len;
 
-	i = 0;
-	while (src[*index] && *index < n)
+	len = 0;
+	while (str[len] && !is_separator(str[len], charset))
+		len++;
+	res = (char *)malloc(sizeof(char) * (len + 1));
+	if (res == NULL)
+		return (NULL);
+	res[i] = 0;
+	len = 0;
+	while (str[len] && !is_separator(str[len], charset))
 	{
-		dest[i] = src[*index];
-		i++;
-		(*index)++;
+		res[len] = str[len];
+		len++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	return (res);
 }
 
-char	**ft_split(char *str, char *charset)
+char		**ft_split(char *str, char *charset)
 {
-	int	i;
-	int	nb_words;
-	int	word_len;
-	int	index;
+	int		i;
+	int		nb_words;
 	char	**tab;
 
 	i = 0;
-	index = 0;
 	nb_words = ft_nb_words(str, charset);
 	tab = (char **)malloc(sizeof(char *) * nb_words + 1);
 	if (tab == NULL)
 		return (NULL);
-	while (i < nb_words)
-	{
-		word_len = ft_word_len(&index, str, charset);
-		tab[i] = (char *)malloc(sizeof(char) * word_len + 1);
-		ft_new_strncpy(&index, tab[i], str, (index + word_len));
-		i++;
-	}
 	tab[i] = 0;
+	while (*str)
+	{
+		while (*str && is_separator(*str))
+			str++;
+		if (*str && !is_separator(*str))
+		{
+			tab[i] = word(str, charset);
+			while (*str && !is_separator(*str, charset))
+				str++;
+			i++;
+		}
+	}
 	return (tab);
 }
 

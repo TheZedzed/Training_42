@@ -13,9 +13,9 @@
 #include <stdlib.h>
 #include "ft_strs_to_tab.h"
 
-int	ft_strlen(char *str)
+int					ft_strlen(char *str)
 {
-	int	len;
+	int				len;
 
 	len = 0;
 	while (str[len])
@@ -23,9 +23,9 @@ int	ft_strlen(char *str)
 	return (len);
 }
 
-char	*ft_strcpy(char *dest, char *src)
+char				*ft_strcpy(char *dest, char *src)
 {
-	int	i;
+	int				i;
 
 	i = 0;
 	while (src[i])
@@ -37,9 +37,9 @@ char	*ft_strcpy(char *dest, char *src)
 	return (dest);
 }
 
-char	*ft_strdup(char *str)
+char				*ft_strdup(char *str)
 {
-	char	*copy;
+	char			*copy;
 
 	copy = malloc(sizeof(*copy) * ft_strlen(str) + 1);
 	if (copy == NULL)
@@ -50,19 +50,18 @@ char	*ft_strdup(char *str)
 
 struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 {
-	int		i;
-	t_stock_str	*tab;
+	t_stock_str		*tab;
+	int				i;
 
-	i = 0;
+	i = -1;
 	tab = malloc(sizeof(*tab) * (ac + 1));
 	if (tab == NULL)
 		return (NULL);
-	while (i < ac)
+	while (++i < ac)
 	{
 		(tab + i)->size = ft_strlen(av[i]);
 		(tab + i)->str = av[i];
 		(tab + i)->copy = ft_strdup(av[i]);
-		i++;
 	}
 	(tab + i)->size = 0;
 	(tab + i)->str = NULL;

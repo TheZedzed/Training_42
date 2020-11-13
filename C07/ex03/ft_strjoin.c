@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 
-int	ft_strslen(int size, char **strs, char *sep)
+int		ft_strslen(int size, char **strs, char *sep)
 {
 	int	i;
 	int	j;

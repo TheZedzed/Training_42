@@ -12,87 +12,91 @@
 
 #include <unistd.h>
 
-void	ft_putchar(char c)
+void				convert_to_hexa(unsigned long addr)
 {
-	write(1, &c, 1);
-}
-
-void	separator(unsigned int index)
-{
-	unsigned int	space;
-
-	space = (16 - (index % 16));
-	if (space == 16)
-		ft_putchar(' ');
-	while (space < 16 && space--)
-		ft_putchar(' ');
-}
-
-void	ft_conv_hexa(unsigned long nb)
-{
-	const char	*hex;
+	const char		*hex;
 
 	hex = "0123456789abcdef";
-	if (nb >= 16)
-		ft_conv_hexa(nb / 16);
-	ft_putchar(hex[nb % 16]);
+	if (addr >= 16)
+		convert_to_hexa(addr / 16);
+	write(1, &hex[addr % 16], 1);
 }
 
-void	ft_print_addr(unsigned long addr)
+void				ft_print_addr(unsigned long addr)
 {
-	int	addr_size;
 	unsigned long	temp;
+	unsigned long	addr_size;
 
-	addr_size = 1; 
 	temp = addr;
-	while ((temp = temp /16))
+	addr_size = 1;
+	while ((temp = temp / 16))
 		addr_size++;
 	addr_size = 16 - addr_size;
 	while (addr_size--)
-		ft_putchar('0');
-	ft_conv_hexa(addr);
-	ft_putchar(':');
+		write(1, "0", 1);
+	convert_to_hexa(addr);
 }
 
-void	ft_print_hexa(char c, unsigned int index)
+void				print_hexa(unsigned	char *addr, unsigned int index, unsigned int limit)
 {
-	const char	*hex;
+	unsigned int	i;
+	const char		*hex;
 
+	i = 0;
 	hex = "0123456789abcdef";
-	if (!(index % 2))
-		ft_putchar(' ');
-	ft_putchar(hex[c / 16]);
-	ft_putchar(hex[c % 16]);
+	if ((index + i) < limit)
+	{
+		while (i < 16 && (index + i) < limit)
+		{
+			write(1, &hex[addr[i] / 16], 1);
+			write(1, &hex[addr[i] % 16], 1);
+			if (i % 2)
+				write(1, " ", 1);
+			i++;
+		}
+		while (i < 16)
+		{
+			write(1, "  ", 2);
+			if (i % 2)
+				write(1, " ", 1);
+			i++;
+		}
+	}
 }
 
-void	*ft_print_memory(void *addr, unsigned int size)
+void				print_char(unsigned char *str, unsigned int index, unsigned int limit)
 {
-	unsigned int	index;
-	unsigned int	begin;
-	char	c;
+	unsigned int	i;
 
-	begin = 0;
-	while (size > 0 && begin < size)
+	i = 0;
+	if ((index + i) < limit)
 	{
-		index = begin;
-		ft_print_addr((unsigned long)(addr + index));
-		while (*(char *)(addr + index) && index < begin + 16)
+		while (i < 16 && ((index + i) < limit))
 		{
-			ft_print_hexa(*(char *)(addr + index), index);
-			index++;
-		}
-		separator(index);
-		index = begin;
-		while (*(char *)(addr + index) && index < begin + 16)
-		{
-			c = *(char *)(addr + index++);
-			if (c > 31 && c < 127)
-				ft_putchar(c);
+			if (str[i] < 32 || str[i] > 126)
+				write(1, ".", 1);
 			else
-				ft_putchar('.');
+				write(1, &str[i], 1);
+			i++;
 		}
-		ft_putchar('\n');
-		begin += 16;
+	}
+}
+
+void				*ft_print_memory(void *addr, unsigned int size)
+{
+	unsigned int	i;
+	unsigned char	*content;
+
+	content = (unsigned char *)addr;
+	i = 0;
+	while (i < size)
+	{
+		ft_print_addr((unsigned long)(addr + i));
+		write(1, ": ", 2);
+		print_hexa(&content[i], i, size);
+		print_char(&content[i], i, size);
+		write(1, "\n", 1);
+		i += 16;
 	}
 	return (addr);
 }

@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strlowcase(char *str)
+char		*ft_strlowcase(char *str)
 {
-	unsigned int	i;
+	char	*ptr;
 
-	i = 0;
-	while (str[i])
+	ptr = str;
+	while (*ptr)
 	{
-		if (str[i] >= 65 && str[i] <= 90)
-			str[i] += 32;
-		i++;
+		if (*ptr >= 65 && *ptr <= 90)
+			*ptr += 32;
+		ptr++;
 	}
 	return (str);
 }

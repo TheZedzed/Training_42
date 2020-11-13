@@ -12,10 +12,10 @@
 
 #include <stdlib.h>
 
-int	*ft_range(int min, int max)
+int		*ft_range(int min, int max)
 {
-	int	i;
 	int	*tab;
+	int	i;
 
 	i = 0;
 	if (min >= max)

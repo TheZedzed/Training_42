@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strupcase(char *str)
+char		*ft_strupcase(char *str)
 {
-	unsigned int	i;
+	char	*ptr;
 
-	i = 0;
-	while (*str)
+	ptr = str;
+	while (*ptr)
 	{
-		if (str[i] >= 97 && str[i] <= 122)
-			str[i++] -= 32;
-		i++;
+		if (*ptr >= 97 && *ptr <= 122)
+			*ptr -= 32;
+		ptr++;
 	}
 	return (str);
 }

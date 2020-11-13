@@ -13,10 +13,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int	ft_ultimate_range(int **range, int min, int max)
+int		ft_ultimate_range(int **range, int min, int max)
 {
-	int	i;
 	int	*tab;
+	int	i;
 
 	i = 0;
 	if (min >= max)
@@ -34,12 +34,4 @@ int	ft_ultimate_range(int **range, int min, int max)
 	}
 	*range = tab;
 	return (i);
-}
-
-int	main(void)
-{
-	int	*range;
-	
-	printf("%d\n", ft_ultimate_range(&range, 5, 10));
-	return (0);
 }

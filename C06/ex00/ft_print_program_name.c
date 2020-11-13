@@ -12,27 +12,20 @@
 
 #include <unistd.h>
 
-void	ft_putchar(char c)
+int		ft_strlen(char *str)
 {
-	write(1, &c, 1);
+	int	len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }
 
-void	ft_putstr(char *str)
+int		main(int argc, char **argv)
 {
-	int	index;
-
-	index = 0;
-	while (str[index])
-	{
-		ft_putchar(str[index]);
-		index++;
-	}
-}
-
-int	main(int argc, char **argv)
-{
-	if (argc)
-		ft_putstr(argv[0]);
-	ft_putchar('\n');
+	(void)argc;
+	write(1, argv[0], ft_strlen(argv[0]));
+	write(1, "\n", 1);
 	return (0);
 }

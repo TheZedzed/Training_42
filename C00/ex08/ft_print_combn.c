@@ -25,7 +25,7 @@ void	display(int tab[], int size)
 	while (++i < size)
 		ft_putchar(tab[i] + '0');
 	if (tab[0] != 10 - size)
-		write(1, ", ",2);
+		write(1, ", ", 2);
 }
 
 void	init_tab(int tab[], int size)
@@ -37,10 +37,25 @@ void	init_tab(int tab[], int size)
 		tab[j] = j;
 }
 
+void	new_index(int tab[], int size, int *index)
+{
+	if (--*(index) >= 0)
+	{
+		while (1)
+		{
+			if (*(index) && tab[*(index)] == 10 - size + *(index))
+				--*(index);
+			else
+				break;
+		}
+		tab[*(index)]++;
+	}
+}
+
 void	ft_print_combn(int n)
 {
 	int	i;
-	int	tab[9] = {0};
+	int	tab[9];
 
 	if (n > 0 && n < 10)
 	{
@@ -55,19 +70,9 @@ void	ft_print_combn(int n)
 					display(tab, n);
 					tab[i]++;
 				}
-				if (--i >= 0)
-				{
-					while (1)
-					{
-						if (i && tab[i] == 10 - n + i)
-							i--;
-						else
-							break;
-					}
-					tab[i]++;
-				}
+				new_index(tab, n, &i);
 				if (tab[0] == 10 - n + 1)
-					break;
+					break ;
 				while (++i < n)
 					tab[i] = tab[i - 1] + 1;
 				i -= 2;

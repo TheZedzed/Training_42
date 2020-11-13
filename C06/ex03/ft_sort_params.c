@@ -12,36 +12,29 @@
 
 #include <unistd.h>
 
-void	ft_putchar(char c)
+int			ft_strlen(char *str)
 {
-	write(1, &c, 1);
+	int		len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }
 
-int	ft_strcmp(char *s1, char *s2)
+int			ft_strcmp(char *s1, char *s2)
 {
 	while (*s1 && *s1 == *s2)
 	{
 		s1++;
 		s2++;
 	}
-	return (*s1 - *s2);
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
 
-void	ft_putstr(char *str)
+int			main(int argc, char **argv)
 {
-	int	index;
-
-	index = 0;
-	while (str[index])
-	{
-		ft_putchar(str[index]);
-		index++;
-	}
-}
-
-int	main(int argc, char **argv)
-{
-	int	i;
+	int		i;
 	char	*temp;
 
 	i = 0;
@@ -58,8 +51,8 @@ int	main(int argc, char **argv)
 	i = 0;
 	while (++i < argc)
 	{
-		ft_putstr(argv[i]);
-		ft_putchar('\n');
+		write(1, argv[i], ft_strlen(argv[i]));
+		write(1, "\n", 1);
 	}
 	return (0);
 }

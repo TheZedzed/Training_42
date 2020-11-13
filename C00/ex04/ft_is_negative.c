@@ -12,12 +12,7 @@
 
 #include <unistd.h>
 
-void	ft_is_negative(int n)
+void		ft_is_negative(int n)
 {
-	char	d;
-	char	p;
-
-	d = 'N';
-	p = 'P';
-	(n >= 0) ? write(1, &p, 1) : write(1, &d, 1);
+	(n >= 0) ? write(1, "P", 1) : write(1, "N", 1);
 }
