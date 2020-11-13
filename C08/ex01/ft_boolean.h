@@ -24,7 +24,7 @@ typedef enum	e_bool
 	FALSE = 0
 }				t_bool;
 
-t_bool	ft_is_even(int nbr);
-void	ft_putstr(char *str);
+t_bool			ft_is_even(int nbr);
+void			ft_putstr(char *str);
 
 #endif
