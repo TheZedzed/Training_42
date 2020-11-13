@@ -11,16 +11,12 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 
 int		is_separator(char c, char *charset)
 {
-	int	i;
-
-	i = 0;
-	while (charset[i] && c != charset[i])
-		i++;
-	if (charset[i] == '\0')
+	while (*charset && c != *charset)
+		charset++;
+	if (*charset == '\0')
 		return (0);
 	return (1);
 }
@@ -52,10 +48,9 @@ char		*word(char *str, char *charset)
 	len = 0;
 	while (str[len] && !is_separator(str[len], charset))
 		len++;
-	res = (char *)malloc(sizeof(char) * (len + 1));
-	if (res == NULL)
+	if (!(res = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
-	res[i] = 0;
+	res[len] = 0;
 	len = 0;
 	while (str[len] && !is_separator(str[len], charset))
 	{
@@ -67,21 +62,20 @@ char		*word(char *str, char *charset)
 
 char		**ft_split(char *str, char *charset)
 {
-	int		i;
-	int		nb_words;
 	char	**tab;
+	int		nb_words;
+	int		i;
 
 	i = 0;
 	nb_words = ft_nb_words(str, charset);
-	tab = (char **)malloc(sizeof(char *) * nb_words + 1);
-	if (tab == NULL)
+	if (!(tab = (char **)malloc(sizeof(char *) * (nb_words + 1))))
 		return (NULL);
-	tab[i] = 0;
+	tab[nb_words] = 0;
 	while (*str)
 	{
-		while (*str && is_separator(*str))
+		while (*str && is_separator(*str, charset))
 			str++;
-		if (*str && !is_separator(*str))
+		if (*str && !is_separator(*str, charset))
 		{
 			tab[i] = word(str, charset);
 			while (*str && !is_separator(*str, charset))
@@ -90,18 +84,4 @@ char		**ft_split(char *str, char *charset)
 		}
 	}
 	return (tab);
-}
-
-int	main(int argc, char **argv)
-{
-	int	i;
-	char	**word;
-
-	if (argc == 3)
-	{
-		word = ft_split(argv[1], argv[2]);
-		for (i = 0; i < 5; i++)
-			printf("%s ", word[i]);
-	}
-	return (0);
 }

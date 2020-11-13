@@ -46,7 +46,7 @@ void	new_index(int tab[], int size, int *index)
 			if (*(index) && tab[*(index)] == 10 - size + *(index))
 				--*(index);
 			else
-				break;
+				break ;
 		}
 		tab[*(index)]++;
 	}
@@ -54,8 +54,8 @@ void	new_index(int tab[], int size, int *index)
 
 void	ft_print_combn(int n)
 {
-	int	i;
 	int	tab[9];
+	int	i;
 
 	if (n > 0 && n < 10)
 	{
