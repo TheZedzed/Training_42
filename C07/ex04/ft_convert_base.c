@@ -11,95 +11,127 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 
-int	is_space(char c);
-int	is_operator(char c);
-int	ft_strlen(char *base);
-int	is_inbase(char c, char *base_from);
-int	invalid_base(char *base);
-
-int	ft_atoi_base(char *nbr, char *base_from)
+int			ft_strlen(char *str)
 {
-	int	nb;
-	int	sign;
-	int	index;
-	int	len_base;
+	int		len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
+}
+
+int			is_space(char c)
+{
+	return (c == 32 || (c >= 9 && c <= 13));
+}
+
+int			error(char *str)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	if (ft_strlen(str) < 2)
+		return (1);
+	while (str[i] && !is_space(str[i]) && str[i] != '+' && str[i] != '-')
+	{
+		j = i + 1;
+		while (str[j] && str[j] != str[i])
+			j++;
+		if (str[j] != '\0')
+			return (1);
+		i++;
+	}
+	if (str[i] != '\0')
+		return (1);
+	return (0);
+}
+
+int			is_inbase(char c, char *base)
+{
+	int		index;
+
+	index = 0;
+	while (base[index])
+	{
+		if (c == base[index])
+			return (index);
+		index++;
+	}
+	return (-1);
+}
+
+int			ft_atoi_base(char *str, char *base)
+{
+	int		nb;
+	int		sign;
+	int		the_base;
 
 	nb = 0;
 	sign = 1;
-	index = 0;
-	len_base = ft_strlen(base_from);
-	while (is_space(nbr[index]))
-		index++;
-	while (is_operator(nbr[index]))
+	the_base = ft_strlen(base);
+	while (is_space(*str))
+		str++;
+	while (*str == '+' || *str == '-')
 	{
-		if (nbr[index] == '-')
+		if (*str == '-')
 			sign *= -1;
-		index++;
+		str++;
 	}
-	while (is_inbase(nbr[index], base_from) != -1)
+	while (is_inbase(*str, base) != -1)
 	{
-		nb = (nb * len_base) + is_inbase(nbr[index], base_from);
-		index++;
+		nb = (nb * the_base) + is_inbase(*str, base);
+		str++;
 	}
 	return (sign * nb);
 }
 
-int	ft_nbrlen(int nbr, char *base)
+int			nbrlen(int nbr, int base_len)
 {
-	int	len;
-	int	len_base;
+	int		len;
 
 	len = 1;
-	len_base = ft_strlen(base);
 	if (nbr < 0)
 		len++;
-	while (nbr /= len_base)
+	while ((nbr /= base_len))
 		len++;
-	len++;
 	return (len);
 }
 
-void	ft_nbr_base(int nbr, int index_end, char *new_nbr, char *base_to)
+char		*itoa_base(int nbr, char *base)
 {
-	int	sign;
-	int	index_beg;
-	int	len_base;
+	char	*num;
+	int		len;
+	int		len_base;
 
-	sign = 1;
-	index_beg = 0;
-	len_base = ft_strlen(base_to);
+	len_base = ft_strlen(base);
+	len = nbrlen(nbr, len_base);
+	if (!(num = (char *)malloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	num[len] = 0;
 	if (nbr < 0)
+		num[0] = '-';
+	while (--len >= 0)
 	{
-		sign = -1;
-		new_nbr[index_beg] = '-';
-		index_beg++;
-	}
-	while (nbr && index_end >= index_beg)
-	{
-		new_nbr[index_end] = base_to[sign * (nbr % len_base)];
+		if (num[len] == '-')
+			break ;
+		num[len] = base[(nbr % len_base)];
 		nbr /= len_base;
-		index_end--;
 	}
+	return (num);
 }
 
-char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
+char		*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	int	nb;
-	int	len_tab;
 	char	*tab;
+	int		nb;
 
-	if (invalid_base(base_from) || invalid_base(base_to))
+	if (!nbr || !base_from || !base_to || error(base_from) || error(base_to))
 		return (NULL);
 	nb = ft_atoi_base(nbr, base_from);
-	len_tab = ft_nbrlen(nb, base_to);
-	tab = malloc(sizeof(char) * len_tab);
-	if (tab == NULL)
-		return (NULL);
-	ft_nbr_base(nb, len_tab - 2, tab, base_to);
-	tab[len_tab - 1] = '\0';
-	return (tab);
+	return (itoa_base(nb, base_to));
 }
 
 int	main(int argc, char **argv)
