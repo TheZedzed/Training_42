@@ -12,72 +12,69 @@
 
 #include <stdlib.h>
 
-int		ft_strslen(int size, char **strs, char *sep)
+int			ft_strlen(char *str)
 {
-	int	i;
-	int	j;
-	int	len;
+	int		len;
 
-	i = 0;
 	len = 0;
-	while (i < size)
-	{
-		j = 0;
-		while (strs[i][j])
-		{
-			len++;
-			j++;
-		}
-		j = 0;
-		while (sep[j])
-		{
-			len++;
-			j++;
-		}
-		i++;
-	}
+	while (str[len])
+		len++;
 	return (len);
 }
 
-char	*ft_strscpy(char *dest, char *src, int *index)
+char		*ft_strcpy(char *dest, char *src)
 {
-	int	i;
+	int		i;
+
+	i = -1;
+	while (src[++i])
+		dest[i] = src[i];
+	dest[i] = 0;
+}
+
+char		*ft_strcat(char *dest, char *src)
+{
+	int		len;
+	int		i;
 
 	i = 0;
+	len = ft_strlen(dest);
 	while (src[i])
 	{
-		dest[*index] = src[i];
-		(*index)++;
+		dest[len + i] = src[i];
 		i++;
 	}
+	dest[len + i] = 0;
 	return (dest);
 }
 
-char	*ft_strjoin(int size, char **strs, char *sep)
+char		*ft_strjoin(int size, char **strs, char *sep)
 {
-	int	i;
 	char	*tab;
-	int	index;
-	int	words_len;
+	int		len;
+	int		i;
 
-	i = 0;
-	index = 0;
-	if (!size)
+	i = -1;
+	len = 0;
+	if (size <= 0)
 	{
-		tab = "\0";
+		if (!(tab = (char *)malloc(1)))
+			return (NULL);
+		*tab = '\0';
 		return (tab);
 	}
-	words_len = ft_strslen(size, strs, sep);
-	tab = (char *)malloc(sizeof(char) * words_len);
-	if (tab == NULL)
+	while (++i < size)
+		len += ft_strlen(strs[i]);
+	len += (ft_strlen(sep) * (size - 1));
+	if (!(tab = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
-	while (i < size)
+	tab[len] = 0;
+	i = 0;
+	ft_strcpy(tab, strs[0]);
+	while (++i < size)
 	{
-		ft_strscpy(tab, strs[i], &index);
-		if (i < size - 1)
-			ft_strscpy(tab, sep, &index);
-		i++;
+		ft_strcat(tab, sep);
+		ft_strcat(tab, strs[i]);
 	}
-	tab[index] = '\0';
 	return (tab);
 }
