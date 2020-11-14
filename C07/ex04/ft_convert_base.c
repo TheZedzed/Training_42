@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
 int			ft_strlen(char *str)
 {
@@ -104,20 +105,25 @@ char		*itoa_base(int nbr, char *base)
 {
 	char	*num;
 	int		len;
+	int		sign;
 	int		len_base;
 
+	sign = 1;
 	len_base = ft_strlen(base);
 	len = nbrlen(nbr, len_base);
 	if (!(num = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	num[len] = 0;
 	if (nbr < 0)
+	{
+		sign = -1;
 		num[0] = '-';
+	}
 	while (--len >= 0)
 	{
 		if (num[len] == '-')
 			break ;
-		num[len] = base[(nbr % len_base)];
+		num[len] = base[sign * (nbr % len_base)];
 		nbr /= len_base;
 	}
 	return (num);
@@ -136,14 +142,11 @@ char		*ft_convert_base(char *nbr, char *base_from, char *base_to)
 
 int	main(int argc, char **argv)
 {
-	if (argc == 4)
-	{
-		if (ft_convert_base(argv[1], argv[2], argv[3]) == NULL)
-			printf("Error on base\n");
-		else
-			printf("%s\n", ft_convert_base(argv[1], argv[2], argv[3]));
-	}
-	else
-		printf ("Few arguments\n");
+	char	*res;
+
+	(void)argc;
+	res = ft_convert_base(argv[1], argv[2], argv[3]);
+	if (res)
+		printf("%s\n", res);
 	return (0);
 }
