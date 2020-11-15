@@ -279,6 +279,16 @@ int			game_solver(int **game)
 	return (0);
 }
 
+void		ft_free(int **game)
+{
+	int		i;
+
+	i = -1;
+	while (++i <= SIZE + 1)
+		free(game[i]);
+	free(game);
+}
+
 int			main(int ac, char **av)
 {
 	int		**game;
@@ -293,5 +303,6 @@ int			main(int ac, char **av)
 	}
 	else
 		write(1, "Error argument\n", 15);
+	ft_free(game);
 	return (0);
 }
