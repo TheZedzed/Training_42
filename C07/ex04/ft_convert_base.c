@@ -131,7 +131,6 @@ char		*itoa_base(int nbr, char *base)
 
 char		*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	char	*tab;
 	int		nb;
 
 	if (!nbr || !base_from || !base_to || error(base_from) || error(base_to))
