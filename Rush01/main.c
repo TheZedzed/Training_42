@@ -14,7 +14,7 @@
 #include <unsitd.h>
 #define SIZE 4
 
-int			check_args(char **av)
+int			check_args(char *av)
 {
 	if (av[1])
 		return (1);
@@ -179,30 +179,30 @@ void		fill_game(int **game, char *av)
 	j = 0;
 	while (++i <= SIZE)
 	{
-		game[0][i] = argv[j] - 48;
+		game[0][i] = av[j] - 48;
 		j += 2;
 	}
 	i = 0;
 	while (++i <= SIZE)
 	{
-		game[SIZE + 1][i] = argv[j] - 48;
+		game[SIZE + 1][i] = av[j] - 48;
 		j += 2;
 	}
 	i = 0;
 	while (++i <= SIZE)
 	{
-		game[i][0] = argv[j] - 48;
+		game[i][0] = av[j] - 48;
 		j += 2;
 	}
 	i = 0;
 	while (++i <= SIZE)
 	{
-		game[i][SIZE + 1] = argv[j] - 48;
+		game[i][SIZE + 1] = av[j] - 48;
 		j += 2;
 	}
 }
 
-char		*init_game(int **game, char *av)
+int			**init_game(int **game, char *av)
 {
 	int		i;
 	int		j;
