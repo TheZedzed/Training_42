@@ -155,17 +155,18 @@ void		display_game(int **game)
 	int		j;
 	char	nb;
 
-	i = -1;
-	while (++i <= SIZE + 1)
+	i = 0;
+	while (++i <= SIZE)
 	{
-		j = -1;
-		while (++j <= SIZE + 1)
+		j = 0;
+		while (++j <= SIZE)
 		{
 			nb = game[i][j] + 48;
 			write(1, &nb, 1);
-			if (j != SIZE + 1)
+			if (j != SIZE)
 				write(1, " ", 1);
 		}
+		write(1, "\n", 1);
 	}
 }
 
@@ -282,6 +283,7 @@ int			main(int ac, char **av)
 {
 	int		**game;
 
+	game = NULL;
 	if (ac == 2 && check_args(av[1]))
 	{
 		if (!(game = init_game(game, av[1])))
