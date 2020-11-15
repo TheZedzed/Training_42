@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <unsitd.h>
+#include <unistd.h>
 #define SIZE 4
 
 int			check_args(char *av)
