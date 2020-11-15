@@ -1,4 +1,1 @@
-# This repo contains all my ft code
-Training
-
-Still working on it
+# Piscine42 - 2020
