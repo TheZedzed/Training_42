@@ -12,7 +12,7 @@ int			ft_strlen(char *str)
 	return (len);
 }
 
-char		*ft_strjoin(char *s1, char *s2)
+char		*ft_join(char *s1, char *s2)
 {
 	char	*res;
 	int		len;
@@ -20,8 +20,12 @@ char		*ft_strjoin(char *s1, char *s2)
 	int		j;
 
 	i = 0;
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
+	if (!s1)
+	{
+		if (!(s1 = (char *)malloc(1)))
+			return (NULL);
+		*s1 = '\0';
+	}
 	len = ft_strlen(s1) + ft_strlen(s2);
 	if (!(res = (char*)malloc(len + 1)))
 		return (NULL);
@@ -82,7 +86,7 @@ char			*ft_strlendup(char *str, int len)
 	return (new_str);
 }
 
-int				split_line(char **line_on_fd, char **line, int fd, int rlen)
+int				split_line(char **line_on_fd, char **line, int fd)
 {
 	char		*tmp;
 	int			i;
@@ -90,22 +94,15 @@ int				split_line(char **line_on_fd, char **line, int fd, int rlen)
 	i = 0;
 	while (line_on_fd[fd][i] && line_on_fd[fd][i] != '\n')
 		i++;
-	if (line_on_fd[fd][i] == '\n')
+	if (line_on_fd[fd][i] == '\n') // si y'a une ligne
 	{
-		*line = ft_strlendup(line_on_fd[fd], i); // on copy la premiere ligne de line_of_fd
+		*line = ft_strlendup(line_on_fd[fd], i); // on retourne la premiere ligne lue dans line
 		tmp = ft_strdup(line_on_fd[fd] + i + 1); // on garde le debut de la ligne suivante
-		free(line_on_fd[fd]); // on free line_of_fd
-		line_on_fd[fd] = tmp; // on stock le debut de la ligne suivante de line_of_fd
-		if (line_on_fd[fd][0] == '\0')
-		{
-			free(line_on_fd[fd]);
-			line_on_fd[fd] = NULL;
-		}
+		free(line_on_fd[fd]); // on free string de line_of_fd
+		line_on_fd[fd] = tmp; // on stock le debut de la ligne suivante dans line_of_fd
 	}
-	else if (line_on_fd[fd][i] == '\0')
+	else if (line_on_fd[fd][i] == '\0') // si derniere ligne
 	{
-		if (rlen == BUFFER_SIZE)
-			return (get_next_line(fd, line));
 		*line = ft_strdup(line_on_fd[fd]);
 		free(line_on_fd[fd]);
 		line_on_fd[fd] = NULL;
@@ -124,23 +121,18 @@ int				get_next_line(int fd, char **line)
 		return (-1);
 	while ((rlen = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
-		buffer[rlen] = 0;
-		if (!line_on_fd[fd])
-		{
-			line_on_fd[fd] = malloc(1);
-			*line_on_fd[fd] = '\0';
-		}
-		tmp = ft_strjoin(line_on_fd[fd], buffer);
-		free(line_on_fd[fd]);
-		line_on_fd[fd] = tmp;
-		if (ft_strchr(buffer, '\n'))
+		buffer[rlen] = 0; //pour pouvoir travailler sur un string fermé
+		tmp = ft_join(line_on_fd[fd], buffer); // tmp : realloc du string de line_of_fd + string buffer
+		free(line_on_fd[fd]); // on supprime le mi-string de line_of_fd
+		line_on_fd[fd] = tmp; // string realloué dans line_of_fd
+		if (ft_strchr(buffer, '\n')) // si une ligne a été lue on sort
 			break ;
 	}
 	if (rlen == -1)
 		return (-1);
-	else if (!rlen && (!line_on_fd[fd] || line_on_fd[fd][0] == '\0'))
+	else if (!rlen && !line_on_fd[fd]) // si fin du fichier et derniere ligne déja affichée
 		return (0);
-	return (split_line(line_on_fd, line, fd, rlen));
+	return (split_line(line_on_fd, line, fd)); // on split la ligne lue
 }
 
 int				main(int ac, char **av)
@@ -155,13 +147,11 @@ int				main(int ac, char **av)
 	fd2 = open(av[2], O_RDONLY);
 	fd3 = open(av[3], O_RDONLY);
 
-	if (get_next_line(fd1, &line) > 0)
+	while (get_next_line(fd1, &line) > 0)
 		printf("%s\n", line);
 	if (get_next_line(fd3, &line) > 0)
 		printf("%s\n", line);
 	if (get_next_line(fd2, &line) > 0)
-		printf("%s\n", line);
-	if (get_next_line(fd1, &line) > 0)
 		printf("%s\n", line);
 	if (get_next_line(fd3, &line) > 0)
 		printf("%s\n", line);

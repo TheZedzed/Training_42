@@ -6,7 +6,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-# define BUFFER_SIZE 32 //dynamique
+# define BUFFER_SIZE 1 //dynamique
 # define MAX_FD 256 //ulimite -n
 
 #endif
