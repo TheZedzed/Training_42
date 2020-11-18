@@ -12,7 +12,7 @@
 
 #include "ft_lib.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void		*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
 

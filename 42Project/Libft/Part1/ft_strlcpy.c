@@ -9,21 +9,23 @@
 /*   Updated: 2020/04/16 21:07:34 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "ft_lib.h"
 
-size_t	ft_strlcpy(char *dest, char *src, size_t size)
+size_t		ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	len;
 	size_t	i;
 
 	i = 0;
 	len = ft_strlen(src);
-	while (src[i] && i < size - 1)
+	if (size)
 	{
-		dest[i] = src[i];
-		i++;
+		while (src[i] && i < (size - 1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
-	dest[i] = '\0';
 	return (len);
 }

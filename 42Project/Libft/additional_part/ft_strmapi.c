@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 22:26:42 by alex              #+#    #+#             */
-/*   Updated: 2020/07/09 13:56:55 by alex             ###   ########.fr       */
+/*   Created: 2020/07/11 11:22:38 by alex              #+#    #+#             */
+/*   Updated: 2020/07/11 11:31:13 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lib.h"
 
-void	ft_putnbr(int n)
+char				*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	sign;
-	char	c;
+	char			*ret;
+	unsigned int	i;
 
-	sign = 1;
-	if (n < 0)
+	i = 0;
+	if (!(ret = (char *) malloc(sizeof(*ret) * (ft_strlen(s) + 1))))
+		return (NULL);
+	while (s[i])
 	{
-		sign = -1;
-		write(1, "-", 1);
+		ret[i] = (*f)(i, s[i]);
+		i++;
 	}
-	if (n >= 10 || n <= -10)
-		ft_putnbr(sign * (n / 10));
-	c = (sign * (n % 10)) + '0';
-	write(1, &c, 1);
+	ret[i] = 0;
+	return (ret);
 }

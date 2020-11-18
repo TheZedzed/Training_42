@@ -12,18 +12,20 @@
 
 #include "ft_lib.h"
 
-void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
+void					*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
 	const unsigned char	*psrc;
-	unsigned char	*pdest;
+	unsigned char		*pdest;
 
 	pdest = (unsigned char *)dest;
 	psrc = (const unsigned char *)src;
 	while (*psrc && n--)
 	{
-		*pdest++ = *psrc;
-		if (*psrc++ == (unsigned char)c)
-			return ((void *)pdest);
+		*pdest = *psrc;
+		if (*psrc == (unsigned char)c)
+			return (dest);
+		*pdest++;
+		*psrc++;
 	}
 	return (NULL);
 }

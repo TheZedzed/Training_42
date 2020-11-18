@@ -14,5 +14,5 @@
 
 int	ft_tolower(int c)
 {
-	return (ft_isupper(int c) ? c + 32 : c);
+	return ((c >= 65 && c <= 90) ? c + 32 : c);
 }

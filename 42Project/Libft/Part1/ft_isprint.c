@@ -14,5 +14,5 @@
 
 int	ft_isprint(int c)
 {
-	return (ft_iscntrl(c) ? 0 : 1);
+	return (c >= 32 && c < 127);
 }

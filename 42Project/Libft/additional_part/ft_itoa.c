@@ -12,49 +12,40 @@
 
 #include "ft_lib.h"
 
-void	ft_reverse(char *s, size_t len)
+size_t		nbrlen(int nbr)
 {
-	int	start;
-	int	end;
-	char	temp;
+	size_t	len;
 
-	start = -1;
-	end = len;
-	while (++start < --end)
-	{
-		temp = s[start];
-		s[start] = s[end];
-		s[end] = temp;
-	}
+	len = 1;
+	if (nbr < 0)
+		len++;
+	while ((nbr /= 10))
+		len++;
+	return (len);
 }
 
-char	*ft_itoa_base(int nb, int base)
+char		*itoa(int n)
 {
-	size_t	temp;
-	int	index;
-	char	*ret;
+	char	*num;
+	size_t	len;
+	int		sign;
 
-	index = 0;
-	temp = ABS((long) nb);
-	if(!(ret = (char *) malloc(sizeof(*ret) * 12)))
+	sign = 1;
+	len = nbrlen(n);
+	if (!(num = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
-	if (!nb || base < 2 || base > 16)
+	num[len] = 0;
+	if (n < 0)
 	{
-		ret[index++] = '0';
-		ret[index] = '\0';
-		return (ret);
+		sign = -1;
+		num[0] = '-';
 	}
-	while (temp)
+	while (--len >= 0)
 	{
-		if (temp % base > 9)
-			ret[index++] = ((temp % base) - 10) + 'A';
-		else
-			ret[index++] = temp % base + '0';
-		temp /= base;
+		if (num[len] == '-')
+			break ;
+		num[len] = sign * (n % 10) + 48;
+		n /= 10;
 	}
-	if (nb < 0 && base == 10)
-		ret[index++] = '-';
-	ret[index] = 0;
-	ft_reverse(ret, ft_strlen(ret));
-	return (ret);
+	return (num);
 }

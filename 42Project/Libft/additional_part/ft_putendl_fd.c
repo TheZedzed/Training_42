@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isdigit.c                                   :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/09 14:04:07 by alex              #+#    #+#             */
-/*   Updated: 2020/07/09 14:06:23 by alex             ###   ########.fr       */
+/*   Created: 2020/07/09 12:42:56 by alex              #+#    #+#             */
+/*   Updated: 2020/07/09 12:46:09 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lib.h"
 
-int	ft_str_is_numeric(const char *s)
+void	ft_putendl_fd(char *s, int fd)
 {
-	while (*s && ft_isdigit(*s))
-		s++;
-	if (!*s)
-		return (1);
-	return (0);
+	write(fd, s, ft_strlen(s));
+	write(fd, "\n", 1);
 }

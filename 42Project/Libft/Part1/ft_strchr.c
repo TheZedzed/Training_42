@@ -12,12 +12,14 @@
 
 #include "ft_lib.h"
 
-char	*ft_strchr(const char *s, int c)
+char		*ft_strchr(const char *s, int c)
 {
-	while (*s != (unsigned char)c)
-		s++;
-	if (*s == (unsigned char)c)
-		return ((char *)s);
-	else
-		return (NULL);
+	char	*ptr;
+
+	ptr = (char *)s;
+	while (*ptr != (unsigned char)c)
+		ptr++;
+	if (*ptr == (unsigned char)c)
+		return (ptr);
+	return (NULL);
 }
