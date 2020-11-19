@@ -12,14 +12,19 @@
 
 #include "ft_list.h"
 
-void	ft_list_push_back(t_list **begin_list, void *data)
+void		ft_list_push_back(t_list **begin_list, void *data)
 {
-	t_list	*elem;
+	t_list	*curr;
+	t_list	*previous;
 	t_list	*last_node;
 
-	elem = (*begin_list);
+	previous = NULL;
+	curr = (*begin_list);
 	last_node = ft_create_elem(data);
-	while (elem->next)
-		elem = elem->next;
-	elem->next = last_node;
+	while (curr)
+	{
+		previous = curr;
+		curr = curr->next;
+	}
+	previous->next = last_node;
 }

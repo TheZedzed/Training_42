@@ -12,9 +12,15 @@
 
 #include "ft_list.h"
 
-t_list	*ft_list_last(t_list *begin_list)
+t_list		*ft_list_last(t_list *begin_list)
 {
-	while (begin_list->next)
+	t_list	*previous;
+
+	previous = NULL;
+	while (begin_list)
+	{
+		previous = begin_list;
 		begin_list = begin_list->next;
-	return (begin_list);
+	}
+	return (previous);
 }

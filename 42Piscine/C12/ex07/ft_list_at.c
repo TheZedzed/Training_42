@@ -12,9 +12,9 @@
 
 #include "ft_list.h"
 
-int	ft_list_size(t_list *begin_list)
+unsigned int		ft_list_size(t_list *begin_list)
 {
-	int	size;
+	unsigned int	size;
 
 	size = 0;
 	while (begin_list)
@@ -25,11 +25,11 @@ int	ft_list_size(t_list *begin_list)
 	return (size);
 }
 
-t_list	*ft_list_at(t_list *begin_list, unsigned int nbr)
+t_list				*ft_list_at(t_list *begin_list, unsigned int nbr)
 {
 	unsigned int	size;
 
-	size = (unsigned int) ft_list_size(begin_list);
+	size = ft_list_size(begin_list);
 	if (nbr < 1 || nbr > size)
 		return (NULL);
 	while (--nbr)

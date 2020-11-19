@@ -12,11 +12,11 @@
 
 #include "ft_list.h"
 
-void	ft_list_push_front(t_list **begin_list, void *data)
+void		ft_list_push_front(t_list **begin_list, void *data)
 {
-	t_list	*first_node;
+	t_list	*head;
 
-	first_node = ft_create_elem(data);
-	first_node->next = (*begin_list);
-	(*begin_list) = first_node;
+	head = ft_create_elem(data);
+	head->next = (*begin_list);
+	(*begin_list) = head;
 }

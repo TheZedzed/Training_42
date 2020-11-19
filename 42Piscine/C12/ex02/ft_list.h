@@ -10,14 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FT_LIST_H
-#define	FT_LIST_H
+#ifndef FT_LIST_H
+# define FT_LIST_H
 
 typedef struct		s_list
 {
-	void		*data;
+	void			*data;
 	struct s_list	*next;
-}			t_list;
+}					t_list;
 
-int			ft_list_size(t_list *begin_list);
 #endif

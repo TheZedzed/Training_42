@@ -12,7 +12,7 @@
 
 #include "ft_list.h"
 
-void	ft_list_push_front(t_list **head, void *data)
+void		ft_list_push_front(t_list **head, void *data)
 {
 	t_list	*node;
 
@@ -21,7 +21,7 @@ void	ft_list_push_front(t_list **head, void *data)
 	(*head) = node;
 }
 
-t_list	*ft_list_push_strs(int size, char **strs)
+t_list		*ft_list_push_strs(int size, char **strs)
 {
 	t_list	*list;
 
