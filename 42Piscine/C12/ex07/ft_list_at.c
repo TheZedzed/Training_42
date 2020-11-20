@@ -29,10 +29,13 @@ t_list				*ft_list_at(t_list *begin_list, unsigned int nbr)
 {
 	unsigned int	size;
 
-	size = ft_list_size(begin_list);
-	if (nbr < 1 || nbr > size)
-		return (NULL);
-	while (--nbr)
-		begin_list = begin_list->next;
-	return (begin_list);
+	if (begin_list)
+	{
+		size = ft_list_size(begin_list);
+		if (nbr < 1 || nbr > size)
+			return (NULL);
+		while (--nbr)
+			begin_list = begin_list->next;
+		return (begin_list);
+	}
 }

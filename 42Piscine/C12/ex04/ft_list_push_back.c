@@ -18,13 +18,16 @@ void		ft_list_push_back(t_list **begin_list, void *data)
 	t_list	*previous;
 	t_list	*last_node;
 
-	previous = NULL;
-	curr = (*begin_list);
-	last_node = ft_create_elem(data);
-	while (curr)
+	if (begin_list)
 	{
-		previous = curr;
-		curr = curr->next;
+		previous = NULL;
+		curr = (*begin_list);
+		last_node = ft_create_elem(data);
+		while (curr)
+		{
+			previous = curr;
+			curr = curr->next;
+		}
+		previous->next = last_node;
 	}
-	previous->next = last_node;
 }

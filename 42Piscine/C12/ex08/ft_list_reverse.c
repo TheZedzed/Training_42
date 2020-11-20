@@ -18,15 +18,18 @@ void		ft_list_reverse(t_list **begin_list)
 	t_list	*next;
 	t_list	*previous;
 
-	current = (*begin_list);
-	next = NULL;
-	previous = NULL;
-	while (current)
+	if (begin_list)
 	{
-		next = current->next;
-		current->next = previous;
-		previous = current;
-		current = next;
+		current = (*begin_list);
+		next = NULL;
+		previous = NULL;
+		while (current)
+		{
+			next = current->next;
+			current->next = previous;
+			previous = current;
+			current = next;
+		}
+		(*begin_list) = previous;
 	}
-	(*begin_list) = previous;
 }
