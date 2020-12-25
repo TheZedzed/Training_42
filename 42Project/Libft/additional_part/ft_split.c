@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "ft_lib.h"
 
 int		is_separator(char c, char sep)
 {

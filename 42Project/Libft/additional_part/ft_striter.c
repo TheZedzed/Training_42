@@ -17,12 +17,3 @@ void	ft_striter(char *s, void (*f)(char *))
 	while (*s)
 		f(s++);
 }
-/*int	main(void)
-{
-	char	tab[10] = "salut fdp";
-
-	printf("%p\n", tab);
-	ft_striter(tab, ft_putstr);
-	printf("%p\n", tab);
-	return (0);
-}*/
